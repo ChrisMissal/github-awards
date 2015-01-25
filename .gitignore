@@ -9,6 +9,8 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+.env
+*.sqlite3-journal
 
 /log/*
 !/log/.keep
@@ -32,3 +34,5 @@ config/database.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
+ressources/*
