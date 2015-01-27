@@ -11,14 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125141124) do
+ActiveRecord::Schema.define(version: 20150127071431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cities", force: :cascade do |t|
+    t.string "country",       null: false
+    t.string "city",          null: false
+    t.string "accented_city", null: false
+  end
+
+  add_index "cities", ["city"], name: "index_cities_on_city", using: :btree
+  add_index "cities", ["country"], name: "index_cities_on_country", using: :btree
+
   create_table "repositories", force: :cascade do |t|
     t.string   "name",                     null: false
-    t.integer  "user_id",                  null: false
+    t.string   "user_id",                  null: false
     t.integer  "stars",        default: 0, null: false
     t.string   "language"
     t.string   "organization"
@@ -41,10 +50,12 @@ ActiveRecord::Schema.define(version: 20150125141124) do
     t.string   "city"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "github_id",    null: false
   end
 
   add_index "users", ["city"], name: "index_users_on_city", using: :btree
   add_index "users", ["country"], name: "index_users_on_country", using: :btree
+  add_index "users", ["github_id"], name: "index_users_on_github_id", using: :btree
   add_index "users", ["login"], name: "index_users_on_login", using: :btree
 
 end

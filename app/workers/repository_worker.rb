@@ -2,6 +2,10 @@ class RepositoryWorker
   include Sidekiq::Worker
 
   def perform(event)
+    create(event)
+  end
+
+  def create(event)
     Repository.create!(:created_at => event["created_at"],
         :name => event["name"], 
         :user_id => event["owner"], 

@@ -26,6 +26,15 @@ gem 'yajl-ruby'
 gem 'pg'
 
 gem 'sidekiq'
+
+gem 'octokit'
+
+gem 'fuzzy_match'
+
+gem 'tor-privoxy'
+gem 'mechanize'
+gem 'socksify'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

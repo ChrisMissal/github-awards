@@ -11,6 +11,7 @@ rerun.txt
 pickle-email-*.html
 .env
 *.sqlite3-journal
+db/*.dump
 
 /log/*
 !/log/.keep
