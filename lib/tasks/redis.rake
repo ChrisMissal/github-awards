@@ -1,20 +1,27 @@
 namespace :redis do
   
   task parse_repos: :environment do
-    
-    (1..247).each do |i| 
-      filename = "ressources/repos_all0000000000#{format('%02d', i)}.json"
+    (98..247).each do |i| 
+      filename = "ressources/repos_all000000000#{format('%03d', i)}.json"
       event_stream = File.read(filename); 0
       
       puts "Start parsing #{filename}"
       
       i = 0
+      start_time = Time.now.to_i
       Yajl::Parser.parse(event_stream) do |event|
         merge(event)
         i+=1
-        puts "created #{i} repos" if i%1000==0
+        if i%1000==0
+          puts "created #{i} repos in #{start_time - Time.now.to_i}" 
+          start_time = Time.now.to_i
+        end
       end
     end
+  end
+  
+  task fill_repos_with_redis: :environment do
+    #Repository.where("language IS NULL OR ")
   end
 
 
