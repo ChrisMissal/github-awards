@@ -32,27 +32,27 @@ namespace :github_archive_crawler do
       end
       since = found_users.last.id
       break if found_users.size < 100
-      sleep 0.5
+      #sleep 0.25
     end
   end
   
   
-  # task crawl_repos: :environment do
-  #   client = Octokit::Client.new(:access_token => "")
-  #   puts "Start crawling"
-  #   since = Repos.last.try(:github_id).try(:to_s) || "0"
+  task crawl_repos: :environment do
+    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN2"])
+    puts "Start crawling repos"
+    since = Repository.last.try(:github_id).try(:to_s) || "0"
     
-  #   loop do
-  #     found_users = client.all_users(:since => since)
-  #     puts "found #{found_users.size} users starting at #{since}"
-  #     found_users.each do |user|
-  #       UserWorker.perform_async(user.to_hash)
-  #     end
-  #     since = found_users.last.id
-  #     break if found_users.size < 100
-  #     sleep 0.5
-  #   end
-  # end
+    loop do
+      found_repos = client.all_repositories(:since => since)
+      puts "found #{found_repos.size} repos starting at #{since}"
+      found_repos.each do |repo|
+        RepositoryWorker.perform_async(repo.to_hash.to_json)
+      end
+      since = found_repos.last.id
+      break if found_repos.size < 100
+      #sleep 0.25
+    end
+  end
   
   task parse_repos: :environment do
     event_stream = File.read("ressources/repos.json"); 0

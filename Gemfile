@@ -34,6 +34,7 @@ gem 'fuzzy_match'
 gem 'tor-privoxy'
 gem 'mechanize'
 gem 'socksify'
+gem 'redis'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
