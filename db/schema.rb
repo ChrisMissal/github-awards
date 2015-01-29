@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127093038) do
+ActiveRecord::Schema.define(version: 20150129085239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,23 +26,26 @@ ActiveRecord::Schema.define(version: 20150127093038) do
   add_index "cities", ["country"], name: "index_cities_on_country", using: :btree
 
   create_table "repositories", force: :cascade do |t|
-    t.string   "name",                     null: false
-    t.string   "user_id",                  null: false
-    t.integer  "stars",        default: 0, null: false
+    t.string   "name",                         null: false
+    t.string   "user_id",                      null: false
+    t.integer  "stars",        default: 0,     null: false
     t.string   "language"
     t.string   "organization"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "github_id",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "github_id",                    null: false
+    t.boolean  "forked",       default: false, null: false
+    t.boolean  "processed",    default: false, null: false
   end
 
   add_index "repositories", ["github_id"], name: "index_repositories_on_github_id", using: :btree
+  add_index "repositories", ["processed"], name: "index_repositories_on_processed", using: :btree
   add_index "repositories", ["user_id", "language", "stars"], name: "index_repositories_on_user_id_and_language_and_stars", using: :btree
   add_index "repositories", ["user_id", "stars"], name: "index_repositories_on_user_id_and_stars", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "mail"
-    t.string   "login",        null: false
+    t.string   "login",                        null: false
     t.string   "name"
     t.string   "company"
     t.string   "blog"
@@ -50,14 +53,16 @@ ActiveRecord::Schema.define(version: 20150127093038) do
     t.string   "location"
     t.string   "country"
     t.string   "city"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "github_id",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "github_id",                    null: false
+    t.boolean  "processed",    default: false, null: false
   end
 
   add_index "users", ["city"], name: "index_users_on_city", using: :btree
   add_index "users", ["country"], name: "index_users_on_country", using: :btree
   add_index "users", ["github_id"], name: "index_users_on_github_id", using: :btree
   add_index "users", ["login"], name: "index_users_on_login", using: :btree
+  add_index "users", ["processed"], name: "index_users_on_processed", using: :btree
 
 end

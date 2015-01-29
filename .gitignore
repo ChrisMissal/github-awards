@@ -12,6 +12,8 @@ pickle-email-*.html
 .env
 *.sqlite3-journal
 db/*.dump
+db/*.bckp
+.DS_Store
 
 /log/*
 !/log/.keep
