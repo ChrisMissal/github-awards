@@ -3,7 +3,7 @@ class RepositoryWorker
 
   def perform(event)
     event = JSON.parse(event)
-    Repository.create!(:github_id => event["id"],
+    Repository.create(:github_id => event["id"],
         :created_at => event["created_at"],
         :name => event["name"], 
         :user_id => event["owner"][0][1], 

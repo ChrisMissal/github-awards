@@ -2,7 +2,7 @@ class UserWorker
   include Sidekiq::Worker
 
   def perform(event)
-    User.create!(:github_id => event["id"],
+    User.create(:github_id => event["id"],
         :login => event["login"], 
         :name => event["name"], 
         :mail => event["mail"], 

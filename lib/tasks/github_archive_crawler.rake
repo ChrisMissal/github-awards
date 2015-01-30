@@ -45,9 +45,28 @@ namespace :github_archive_crawler do
   
   
   task crawl_repos: :environment do
+    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
+    puts "Start crawling repos"
+    start_id = "25511260"#Repository.maximum(:github_id)
+    since = start_id
+    
+    loop do
+      found_repos = client.all_repositories(:since => since)
+      puts "found #{found_repos.size} repos starting at #{since}"
+      found_repos.each do |repo|
+        RepositoryWorker.perform_async(repo.to_hash.to_json)
+      end
+      since = found_repos.last.id
+      break if found_repos.size < 100 || since >= 25611390
+      #sleep 0.25
+    end
+  end
+  
+  task crawl_repos2: :environment do
     client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN2"])
     puts "Start crawling repos"
-    since = Repository.last.try(:github_id).try(:to_s) || "0"
+    start_id = Repository.maximum(:github_id)+100000
+    since = start_id
     
     loop do
       found_repos = client.all_repositories(:since => since)

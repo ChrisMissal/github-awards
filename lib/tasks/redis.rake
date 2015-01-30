@@ -55,7 +55,6 @@ namespace :redis do
 
 
   def merge_user(event)
-    event = JSON.parse(event)
     #ignore lines with only login
     if event.keys == ["login"]
       return
@@ -64,13 +63,13 @@ namespace :redis do
     user = $redis.get("user_login:"+event["login"])
     if user
       user = JSON.parse(user)
-      user["name"] ||= event["name"]
-      user["company"] ||= event["company"]
-      user["location"] ||= event["location"]
-      user["blog"] ||= event["blog"]
-      user["email"] ||= event["email"]
+      event["name"] ||= user["name"]
+      event["company"] ||= user["company"]
+      event["location"] ||= user["location"]
+      event["blog"] ||= user["blog"]
+      event["email"] ||= user["email"]
     end
-    $redis.set("user_login:"+event["login"], user.to_json)
+    $redis.set("user_login:"+event["login"], event.to_json)
   end
   
 
