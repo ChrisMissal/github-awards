@@ -20,6 +20,45 @@ namespace :redis do
     end
   end
   
+  task fill_repos_with_redis: :environment do
+    i = 0
+    Repository.where(:processed => false).find_each do |repo|
+      begin
+        repo_infos = $redis.get("repo_url:https://github.com/#{repo.user_id}/#{repo.name}") || ""
+        #puts "updating repo #{repo.name} with #{repo_infos}"
+        RepositoryFillWorker.perform_async(repo.id, repo_infos)
+        puts "filled #{i} repos" if i%1000==0
+        i+=1
+        #slow down the process so that the redis queue doesn't get filled with millions of jobs
+        sleep 0.0018
+      rescue Redis::TimeoutError => e
+        puts e
+        sleep 1
+      end
+    end
+  end
+  
+  
+  def merge_repo(event)
+    repo = $redis.get("repo_url:"+event["a_repository_url"])
+    infos = event.select {|k, v| ["a_repository_watchers", "a_repository_language", "a_repository_fork"].include?(k)}
+
+    if repo
+      if !repo["a_repository_fork"] && event["a_repository_fork"]
+        infos["a_repository_fork"] = true
+      end
+      
+      if repo["a_repository_watchers"] < event["a_repository_watchers"]
+        infos["a_repository_watchers"] = event["a_repository_watchers"]
+      end
+      
+      if repo["a_repository_language"].blank? && event["a_repository_language"].present?
+        infos["a_repository_language"] = event["a_repository_language"]
+      end
+    end
+    $redis.set("repo_url:"+event["a_repository_url"], infos.to_json)
+  end
+  
   
   task parse_users: :environment do
     filename = "ressources/users.json"
@@ -35,17 +74,18 @@ namespace :redis do
     end
   end
   
-  task fill_repos_with_redis: :environment do
+  
+  task fill_user_with_redis: :environment do
     i = 0
-    Repository.where(:processed => false).find_each do |repo|
+    User.where(:processed => false).find_each do |user|
       begin
-        repo_infos = $redis.get("repo_url:https://github.com/#{repo.user_id}/#{repo.name}") || ""
+        user_infos = $redis.get("user_login:#{user.login}") || ""
         #puts "updating repo #{repo.name} with #{repo_infos}"
-        RepositoryFillWorker.perform_async(repo.id, repo_infos)
-        puts "filled #{i} repos" if i%1000==0
+        UserFillWorker.perform_async(user.id, user_infos)
+        puts "filled #{i} users" if i%1000==0
         i+=1
         #slow down the process so that the redis queue doesn't get filled with millions of jobs
-        sleep 0.0027
+        sleep 0.0019
       rescue Redis::TimeoutError => e
         puts e
         sleep 1
@@ -72,24 +112,4 @@ namespace :redis do
     $redis.set("user_login:"+event["login"], event.to_json)
   end
   
-
-  def merge_repo(event)
-    repo = $redis.get("repo_url:"+event["a_repository_url"])
-    infos = event.select {|k, v| ["a_repository_watchers", "a_repository_language", "a_repository_fork"].include?(k)}
-
-    if repo
-      if !repo["a_repository_fork"] && event["a_repository_fork"]
-        infos["a_repository_fork"] = true
-      end
-      
-      if repo["a_repository_watchers"] < event["a_repository_watchers"]
-        infos["a_repository_watchers"] = event["a_repository_watchers"]
-      end
-      
-      if repo["a_repository_language"].blank? && event["a_repository_language"].present?
-        infos["a_repository_language"] = event["a_repository_language"]
-      end
-    end
-    $redis.set("repo_url:"+event["a_repository_url"], infos.to_json)
-  end
 end

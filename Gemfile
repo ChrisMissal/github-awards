@@ -36,6 +36,7 @@ gem 'mechanize'
 gem 'socksify'
 gem 'redis'
 gem 'unicorn'
+gem 'httparty'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

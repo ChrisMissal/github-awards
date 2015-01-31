@@ -39,6 +39,9 @@ namespace :github_archive_crawler do
       rescue Errno::ETIMEDOUT => e
         puts e
         sleep 1
+      rescue Errno::ENETDOWN => e
+        puts e
+        sleep 1
       end
     end
   end
@@ -47,36 +50,52 @@ namespace :github_archive_crawler do
   task crawl_repos: :environment do
     client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
     puts "Start crawling repos"
-    start_id = "25511260"#Repository.maximum(:github_id)
+    start_id = 27941122#Repository.maximum(:github_id)
     since = start_id
     
     loop do
-      found_repos = client.all_repositories(:since => since)
-      puts "found #{found_repos.size} repos starting at #{since}"
-      found_repos.each do |repo|
-        RepositoryWorker.perform_async(repo.to_hash.to_json)
+      begin
+        found_repos = client.all_repositories(:since => since)
+        puts "found #{found_repos.size} repos starting at #{since}"
+        found_repos.each do |repo|
+          RepositoryWorker.perform_async(repo.to_hash.to_json)
+        end
+        since = found_repos.last.id
+        break if found_repos.size < 100 || since >= 28709353
+        #sleep 0.25
+      rescue Errno::ETIMEDOUT => e
+        puts e
+        sleep 1
+      rescue Errno::ENETDOWN => e
+        puts e
+        sleep 1
       end
-      since = found_repos.last.id
-      break if found_repos.size < 100 || since >= 25611390
-      #sleep 0.25
     end
   end
   
   task crawl_repos2: :environment do
     client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN2"])
     puts "Start crawling repos"
-    start_id = Repository.maximum(:github_id)+100000
+    start_id = 29492537#Repository.maximum(:github_id)+1000000
     since = start_id
     
     loop do
-      found_repos = client.all_repositories(:since => since)
-      puts "found #{found_repos.size} repos starting at #{since}"
-      found_repos.each do |repo|
-        RepositoryWorker.perform_async(repo.to_hash.to_json)
+      begin
+        found_repos = client.all_repositories(:since => since)
+        puts "found #{found_repos.size} repos starting at #{since}"
+        found_repos.each do |repo|
+          RepositoryWorker.perform_async(repo.to_hash.to_json)
+        end
+        since = found_repos.last.id
+        break if found_repos.size < 100 || since >= 29992178
+        #sleep 0.25
+      rescue Errno::ETIMEDOUT => e
+        puts e
+        sleep 1
+      rescue Errno::ENETDOWN => e
+        puts e
+        sleep 1
       end
-      since = found_repos.last.id
-      break if found_repos.size < 100
-      #sleep 0.25
     end
   end
   
@@ -127,6 +146,70 @@ namespace :github_archive_crawler do
       puts "created #{i} cities" if i%1000==0
       
     end; 0
+  end
+  
+  task create_country_db: :environment do
+    file = File.read("ressources/country.txt", encoding: "ISO8859-1"); 0
+    country_array = file.split("\n")[1..-1]; 0
+    
+    cities = country_array.map do |country| 
+      attributes = country.delete("\r").split("\t")
+      puts "set #{attributes[1].downcase} = #{attributes[3].downcase}"
+      City.where(:country => attributes[1].downcase).update_all(:country_full_name => attributes[3].downcase)
+    end; 0
+  end
+  
+  
+  task set_country_city_from_location: :environment do
+    #User.select(:location).distinct
+    #location = URI.encode(User.where("location IS NOT NULL").first.location)
+    User.select(:location).where("location IS NOT NULL AND (CITY IS NULL AND COUNTRY IS NULL)").group(:location).each do |user|
+      location = user.location
+      
+      not_found = $redis.smembers("location_error")
+      next if not_found.include?(location)
+      
+      begin 
+        result = get_address_from_openstreepmap(location)
+        result = get_address_from_googlemap(location) if result.nil?
+      rescue Errno::ECONNRESET => e
+        puts e
+      end
+      
+      if result
+        count = User.where("LOWER(location) = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city], :country => result[:country])
+        puts "updating users with location #{location} to city : #{result[:city]} , country : #{result[:country]}"
+      else
+        puts "No city found for #{location}"
+        $redis.sadd("location_error", location)
+      end
+    end
+  end
+  
+  def get_address_from_openstreepmap(location)
+    response = HTTParty.get("http://nominatim.openstreetmap.org/search?q=#{URI.encode(location)}&format=json&accept-language=en-US&addressdetails=1")
+    result = JSON.parse(response.body)
+    place = result.select {|r| ["suburb", "residential", "city", "town", "village"].include?(r["type"]) }.first
+    if place
+      return {:city => place["address"]["city"], :country => place["address"]["country"]}
+    else
+      return nil
+    end
+  end
+  
+  def get_address_from_googlemap(location)
+    response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{URI.encode(location)}")
+    result = JSON.parse(response.body)
+    address_components = result.try(:[], "results").try(:first).try(:[], "address_components")
+    return if address_components.nil?
+      
+    city = address_components.select { |r| r["types"].include?("locality")}.first
+    country = address_components.select { |r| r["types"].include?("country")}.first
+    if city && country
+      return {:city => city["long_name"], :country => country["long_name"]}
+    else
+      return
+    end
   end
   
   # task call_github_api: :environment do

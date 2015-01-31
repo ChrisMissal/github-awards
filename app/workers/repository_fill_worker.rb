@@ -10,7 +10,7 @@ class RepositoryFillWorker
         :forked => infos["a_repository_fork"],
         :processed => true)
     else
-      repo.update_column(:processed, true)
+      repo.update_columns(:processed => true)
     end
   end
 end

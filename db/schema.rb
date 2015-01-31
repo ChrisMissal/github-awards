@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130071225) do
+ActiveRecord::Schema.define(version: 20150130151131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cities", force: :cascade do |t|
-    t.string "country",       null: false
-    t.string "city",          null: false
-    t.string "accented_city", null: false
+    t.string "country",           null: false
+    t.string "city",              null: false
+    t.string "accented_city",     null: false
+    t.string "country_full_name"
   end
 
   add_index "cities", ["city"], name: "index_cities_on_city", using: :btree
