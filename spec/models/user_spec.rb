@@ -21,4 +21,11 @@ describe "User" do
     end
   end
   
+  describe "relations" do
+    it "has language_ranks" do
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:language_rank, :user => user)
+      user.language_ranks.count.should == 1
+    end
+  end
 end

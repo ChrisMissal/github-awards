@@ -9,6 +9,7 @@ class UserWorker
         :company => event["company"], 
         :blog => event["blog"], 
         :gravatar_url => event["avatar_url"], 
-        :location => event["location"])
+        :location => event["location"],
+        :organization => event["type"]=="Organization")
   end
 end

@@ -160,34 +160,93 @@ namespace :github_archive_crawler do
   end
   
   
+  task search_not_found_location: :environment do
+    require 'net/telnet'
+    require 'socksify'
+    
+    class GoogleMapRateLimitExceeded < Exception 
+    end
+    
+    original_ip = HTTParty.get("http://bot.whatismyipaddress.com").body
+    puts "original IP is : #{original_ip}"
+
+    # socksify will forward traffic to Tor so you dont need to set a proxy for Mechanize from there
+    TCPSocket::socks_server = "127.0.0.1"
+    TCPSocket::socks_port = "50001"
+    tor_port = 9050
+    
+    new_ip = HTTParty.get("http://bot.whatismyipaddress.com").body
+    puts "new IP is #{new_ip}"
+    
+    not_found = $redis.smembers("location_error")
+    not_found.each do |location|
+      
+      begin
+        $redis.srem("location_error", location)
+        result = get_address_from_googlemap(location) 
+        
+        if result
+          User.where("LOWER(location) = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city], :country => result[:country])
+          puts "updating users with location #{location} to city : #{result[:city]} , country : #{result[:country]}"
+        else
+          puts "No city found for #{location}"
+          $redis.sadd("location_error_google", location)
+        end
+      rescue GoogleMapRateLimitExceeded => e
+        puts e
+        #Switch IP
+        localhost = Net::Telnet::new("Host" => "localhost", "Port" => "#{tor_port}", "Timeout" => 10, "Prompt" => /250 OK\n/)
+        localhost.cmd('AUTHENTICATE ""') { |c| print c; throw "Cannot authenticate to Tor" if c != "250 OK\n" }
+        localhost.cmd('signal NEWNYM') { |c| print c; throw "Cannot switch Tor to new route" if c != "250 OK\n" }
+        localhost.close      
+        sleep 10
+
+        new_ip = HTTParty.get("http://bot.whatismyipaddress.com").body
+        puts "new IP is #{new_ip}"
+      rescue JSON::ParserError => e
+        puts e
+        $redis.sadd("location_error_google", location)
+      rescue OpenSSL::SSL::SSLError => e
+        puts e
+        $redis.sadd("location_error_google", location)
+      end
+    end
+  end
+  
+  
   task set_country_city_from_location: :environment do
-    #User.select(:location).distinct
-    #location = URI.encode(User.where("location IS NOT NULL").first.location)
+    not_found = $redis.smembers("location_error")
+    not_found_google = $redis.smembers("location_error_google")
+      
     User.select(:location).where("location IS NOT NULL AND (CITY IS NULL AND COUNTRY IS NULL)").group(:location).each do |user|
       location = user.location
       
-      not_found = $redis.smembers("location_error")
-      next if not_found.include?(location)
+      next if not_found.include?(location) || not_found_google.include?(location)
       
       begin 
         result = get_address_from_openstreepmap(location)
-        result = get_address_from_googlemap(location) if result.nil?
+        #result = get_address_from_googlemap(location) if result.nil?
+        if result
+          User.where("LOWER(location) = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city], :country => result[:country])
+          puts "updating users with location #{location} to city : #{result[:city]} , country : #{result[:country]}"
+        else
+          puts "No city found for #{location}"
+          $redis.sadd("location_error", location)
+        end
       rescue Errno::ECONNRESET => e
         puts e
-      end
-      
-      if result
-        count = User.where("LOWER(location) = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city], :country => result[:country])
-        puts "updating users with location #{location} to city : #{result[:city]} , country : #{result[:country]}"
-      else
-        puts "No city found for #{location}"
-        $redis.sadd("location_error", location)
+        sleep 1
+      rescue JSON::ParserError => e
+        puts e
+        sleep 1
       end
     end
   end
   
   def get_address_from_openstreepmap(location)
     response = HTTParty.get("http://nominatim.openstreetmap.org/search?q=#{URI.encode(location)}&format=json&accept-language=en-US&addressdetails=1")
+    return if response.nil?
+    
     result = JSON.parse(response.body)
     place = result.select {|r| ["suburb", "residential", "city", "town", "village"].include?(r["type"]) }.first
     if place
@@ -200,6 +259,8 @@ namespace :github_archive_crawler do
   def get_address_from_googlemap(location)
     response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{URI.encode(location)}")
     result = JSON.parse(response.body)
+    raise GoogleMapRateLimitExceeded if result["status"]=="OVER_QUERY_LIMIT"
+    
     address_components = result.try(:[], "results").try(:first).try(:[], "address_components")
     return if address_components.nil?
       
@@ -212,17 +273,43 @@ namespace :github_archive_crawler do
     end
   end
   
-  # task call_github_api: :environment do
-  #   require 'net/telnet'
+  task get_organization: :environment do
+    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN2"])
+    $redis.smembers("user_update_error").each do |user_login|
+      event = client.user user_login
+      User.create(:github_id => event["id"],
+        :login => event["login"], 
+        :name => event["name"], 
+        :mail => event["mail"], 
+        :company => event["company"], 
+        :blog => event["blog"], 
+        :gravatar_url => event["avatar_url"], 
+        :location => event["location"],
+        :organization => event["type"]=="Organization")
+      $redis.srem("user_update_error", user_login)
+    end
     
-  #   original_ip = Mechanize.new.get("http://bot.whatismyipaddress.com").content
-  #   puts "original IP is : #{original_ip}"
-
-  #   TCPSocket::socks_server = "127.0.0.1"
-  #   TCPSocket::socks_port = "50001"
-
-  #   tor_control_port_start = 9050
-  #   client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-  #   users = client.all_users
-  # end
+    
+    start_date=DateTime.parse("2008-01-01")
+    loop do
+      search_date = Time.at(start_date.to_i).strftime("%Y-%m-%d")
+      puts "searching organization created #{search_date}"
+      
+      i=0
+      loop do
+        response = HTTParty.get("https://api.github.com/search/users?access_token=#{ENV["GITHUB_TOKEN"]}&page=#{i}&per_page=100&q=type:Organization+created:#{search_date}")
+        results = JSON.parse(response.body)["items"]
+        break if results.nil?
+        
+        results.each do |user|
+          UserUpdateWorker.perform_async(user["login"], {"organization" => (user["type"]=="Organization")}.to_json)
+        end
+        i+=1
+        break if results.count < 100
+      end
+      
+      break if start_date >= Time.now
+      start_date+=1.day
+    end
+  end
 end
