@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'yajl-ruby'
 
-gem 'pg'
+gem 'pg', '0.18.1'
 
 gem 'sidekiq'
 
@@ -39,6 +39,7 @@ gem 'unicorn'
 gem 'httparty'
 gem 'kaminari'
 gem 'awesome_print'
+gem 'tor', :git => 'https://github.com/bendiken/tor-ruby.git', :ref => 'd3e28f4f0b42db4cc896c1cae1a7059a10321880'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

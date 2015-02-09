@@ -2,14 +2,14 @@ DROP TABLE IF EXISTS language_ranks;
 CREATE TABLE language_ranks AS
 SELECT t1.*, t1.rank::FLOAT / t2.count_users * 100 AS top
 FROM (
-SELECT LANGUAGE, country, city, sum(stars) + (1.0 - 1.0/count(repositories.id)) AS score, row_number() OVER (PARTITION BY repositories.language, users.city ORDER BY (sum(stars) + (1.0 - 1.0/count(repositories.id))) DESC) AS rank, count(repositories.id) AS repository_count, sum(stars) AS stars_count, users.id AS user_id
+SELECT LANGUAGE, LOWER(country), LOWER(city), sum(stars) + (1.0 - 1.0/count(repositories.id)) AS score, row_number() OVER (PARTITION BY repositories.language, users.city ORDER BY (sum(stars) + (1.0 - 1.0/count(repositories.id))) DESC) AS rank, count(repositories.id) AS repository_count, sum(stars) AS stars_count, users.id AS user_id
 FROM repositories
 INNER JOIN users ON users.login = repositories.user_id
 WHERE repositories.language IS NOT NULL AND users.organization=FALSE
 GROUP BY repositories.language, city, country, users.id
 ) t1
 INNER JOIN (
-SELECT count(DISTINCT user_id) AS count_users, repositories.language, city, country
+SELECT count(DISTINCT user_id) AS count_users, repositories.language, LOWER(city), LOWER(country)
 FROM repositories
 INNER JOIN users ON repositories.user_id = users.login
 WHERE repositories.language IS NOT NULL AND users.organization=FALSE

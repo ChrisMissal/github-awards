@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/bendiken/tor-ruby.git
+  revision: d3e28f4f0b42db4cc896c1cae1a7059a10321880
+  ref: d3e28f4f0b42db4cc896c1cae1a7059a10321880
+  specs:
+    tor (0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -246,7 +253,7 @@ DEPENDENCIES
   kaminari
   mechanize
   octokit
-  pg
+  pg (= 0.18.1)
   rails (= 4.2.0)
   redis
   rspec-rails (~> 3.0)
@@ -255,6 +262,7 @@ DEPENDENCIES
   sidekiq
   socksify
   spring
+  tor!
   tor-privoxy
   turbolinks
   uglifier (>= 1.3.0)

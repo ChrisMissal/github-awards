@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131151140) do
+ActiveRecord::Schema.define(version: 20150208192414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,20 +26,20 @@ ActiveRecord::Schema.define(version: 20150131151140) do
   add_index "cities", ["city"], name: "index_cities_on_city", using: :btree
   add_index "cities", ["country"], name: "index_cities_on_country", using: :btree
 
-  create_table "language_ranks", force: :cascade do |t|
-    t.integer "user_id",                      null: false
-    t.string  "language",                     null: false
-    t.float   "score",                        null: false
-    t.integer "rank",                         null: false
-    t.integer "top",                          null: false
-    t.string  "city"
+  create_table "language_ranks", id: false, force: :cascade do |t|
+    t.string  "language"
     t.string  "country"
-    t.integer "repository_count", default: 0, null: false
-    t.integer "stars_count",      default: 0, null: false
+    t.string  "city"
+    t.decimal "score"
+    t.integer "rank",             limit: 8
+    t.integer "repository_count", limit: 8
+    t.integer "stars_count",      limit: 8
+    t.integer "user_id"
+    t.float   "top"
   end
 
-  add_index "language_ranks", ["user_id", "language", "score", "city"], name: "rank_by_city_index", using: :btree
-  add_index "language_ranks", ["user_id", "language", "score", "country"], name: "rank_by_country_index", using: :btree
+  add_index "language_ranks", ["language", "rank", "city", "country"], name: "language_ranks_city", using: :btree
+  add_index "language_ranks", ["user_id"], name: "language_ranks_user_id", using: :btree
 
   create_table "repositories", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150131151140) do
   add_index "users", ["city"], name: "index_users_on_city", using: :btree
   add_index "users", ["country"], name: "index_users_on_country", using: :btree
   add_index "users", ["github_id"], name: "index_users_on_github_id", using: :btree
+  add_index "users", ["location"], name: "index_users_on_location", using: :btree
   add_index "users", ["login", "city"], name: "index_users_on_login_and_city", using: :btree
   add_index "users", ["login", "country"], name: "index_users_on_login_and_country", using: :btree
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree

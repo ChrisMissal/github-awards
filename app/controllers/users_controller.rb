@@ -4,8 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    page = params[page] || 0
-    @users = User.all.page().per(25)
+    page = params[:page] || 0
+    @city = params[:city].try(:downcase) || "paris"
+    @language = params[:language].try(:downcase) || "ruby"
+    @languages = LanguageRank.select(:language).order("language ASC").distinct.map{|l| l.language.capitalize}
+    @language_ranks = LanguageRank.includes(:user).where(:city => @city, :language => @language).order("rank ASC").page(page).per(25)
   end
 
   # GET /users/1

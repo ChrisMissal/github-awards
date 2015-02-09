@@ -1,26 +1,55 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Listing Users</h1>
+  </div>
+</div>
 <br>
-<%= paginate @users %>
 
-<%= link_to 'New User', new_user_path %>
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_tag users_path, :method => 'get' do %>
+      <p>
+        Language :
+        <%= select_tag :language, options_for_select(@languages, @language.capitalize) %>
+        City :
+        <%= text_field_tag :city, @city.capitalize %>
+        <%= submit_tag "Search", :name => nil %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table users">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Username</th>
+          <th>Rank</th>
+          <th>Repos</th>
+          <th>Stars</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @language_ranks.each do |language_rank| %>
+          <tr>
+            <td><%= link_to(image_tag(language_rank.user.gravatar_url, :class => "thumbnail avatar"), user_path(language_rank.user)) %></td>
+            <td class="username"><%= link_to(language_rank.user.login, user_path(language_rank.user))%></td>
+            <td><%= language_rank.rank %></td>
+            <td><%= language_rank.repository_count %></td>
+            <td><%= language_rank.stars_count %> <i class="fa fa-star star"></i></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= paginate @language_ranks %>
+  </div>
+</div>
