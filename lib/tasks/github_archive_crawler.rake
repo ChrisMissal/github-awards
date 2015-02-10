@@ -161,7 +161,7 @@ namespace :github_archive_crawler do
   
   
   task search_not_found_location: :environment do
-    User.select("id, location").where("(location IS NOT NULL) AND (location != '') AND (city IS NULL) AND processed = false").find_each do |user|
+    User.select("id, location").where("(location IS NOT NULL) AND (location != '') AND ((city IS NULL) OR (city = '')) AND location NOT IN (?)", $redis.smembers("location_error")).each do |user|
       GeocoderWorker.perform_async(user.location)
     end
     # not_found = $redis.smembers("location_error")
@@ -170,18 +170,21 @@ namespace :github_archive_crawler do
     # end
   end
   
-  task search_not_found_location: :environment do
-    iterator=0
+  task update_locations: :environment do
+    iterator=9215
     loop do
+      puts "current iterator = #{iterator}"
       result = $redis.hscan("location", iterator)
       iterator = result[0]
-      break if iterator.to_i == 0
       
       result[1].each do |hash|
         location = hash[0]
         geocoded = eval(hash[1])
+        puts "updating location : #{location} with : #{geocoded[:city].downcase}, #{geocoded[:country].downcase}"
         User.where("location = '#{location.downcase.gsub("'", "''")}'").update_all(:city => geocoded[:city].downcase, :country => geocoded[:country].downcase, :processed => true)
       end
+      
+      break if iterator.to_i == 0
     end
   end
   

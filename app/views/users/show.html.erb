@@ -1,4 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-3 col-centered title">
+    <h1><%= @user.login %></h1>
+    <%= image_tag @user.gravatar_url, :class => "thumbnail avatar-bg"%>
+    <p>City : <%= @user.city.capitalize %></p>
+    <p>country : <%= @user.country.capitalize %></p>
+  </div>
+</div>
+<br>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<% @language_ranks.each do |language| %>
+  <div class="row"  style="height:300px">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-1 col-centered">
+          <%= image_tag "languages/css.png" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 ranks">
+          <p>Ranking for <%= @user.city %></p>
+          <p>10 / 2000</p>
+        </div>
+        <div class="col-xs-4 ranks">
+          <p>Ranking for <%= @user.country %></p>
+          <p>10 / 2000</p>
+        </div>
+        <div class="col-xs-4 ranks">
+          <p>Ranking Worldwilde</p>
+          <p>10 / 2000</p>
+        </div>
+      </div>  
+    </div>
+  </div>
+<% end %>
+
+<!-- <div id="graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div id="odometer" class="odometer counter">123</div> -->

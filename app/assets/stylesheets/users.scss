@@ -8,9 +8,30 @@
   line-height: 20px;
 }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+}
+
+.ranks {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .avatar {
   height: 50px;
   margin-bottom: 0px;
+}
+
+.avatar-bg {
+  height: 190px;
+  margin-right: 20px;
+  margin: 0 auto;
 }
 
 .table>thead>tr>th {
@@ -26,4 +47,10 @@
     color: yellow;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: orange;
+}
+
+.counter {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px !important;
 }

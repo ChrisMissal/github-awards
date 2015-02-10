@@ -45,11 +45,11 @@ class GeocoderWorker
       result = GoogleMap.new.call(location)
             
       if result
-        # puts Benchmark.measure {
-        #   User.where("location = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city].downcase, :country => result[:country].downcase, :processed => true)
-        # }
+        puts Benchmark.measure {
+          User.where("location = '#{location.downcase.gsub("'", "''")}'").update_all(:city => result[:city].downcase, :country => result[:country].downcase, :processed => true)
+        }
         #
-        $redis.hset("location", location.downcase.gsub("'", "''"), {:city => result[:city], :country => result[:country]})
+        #$redis.hset("location", location.downcase.gsub("'", "''"), {:city => result[:city], :country => result[:country]})
         puts "updating users with location #{location} to city : #{result[:city]} , country : #{result[:country]}"
       else
         # puts Benchmark.measure {
@@ -59,6 +59,7 @@ class GeocoderWorker
         $redis.sadd("location_error", location)
         puts "No city found for #{location}"
       end
+      sleep 0.5
     rescue GoogleMapRateLimitExceeded => e
       puts e
       
