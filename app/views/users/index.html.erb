@@ -1,3 +1,15 @@
+<% content_for :head do %>
+<script type="text/javascript">
+    $(function() {
+      $(function() {
+        $( "#city" ).autocomplete({
+         source: city
+        });
+      });
+    });
+  </script>
+<% end %>
+
 <div class="row">
   <div class="col-xs-12">
     <h1>Listing Users</h1>
@@ -12,7 +24,7 @@
     </div>
     <div class="col-lg-3 col-xs-6">
     <p>City :
-          <%= text_field_tag :country, @city.capitalize %>
+          <%= text_field_tag :city, @city.capitalize %>
           <%= submit_tag "Search", :name => nil %></p>
     </div>
   <% end %>
