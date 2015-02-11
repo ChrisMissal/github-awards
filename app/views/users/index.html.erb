@@ -1,10 +1,8 @@
 <% content_for :head do %>
-<script type="text/javascript">
+  <script type="text/javascript">
     $(function() {
-      $(function() {
-        $( "#city" ).autocomplete({
-         source: city
-        });
+      $( "#city" ).autocomplete({
+       source: cities
       });
     });
   </script>

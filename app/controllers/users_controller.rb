@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     page = params[:page] || 0
     @city = params[:city].try(:downcase) || "paris"
     @language = params[:language].try(:downcase) || "ruby"
-    @languages = Rails.cache.fetch("languages") { LanguageRank.select(:language).order("language ASC").distinct.map{|l| l.language.capitalize} }
+    #@languages = Rails.cache.fetch("languages") { JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'languages.json'))) }
+    @languages = JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'languages.json')))
     @language_ranks = LanguageRank.includes(:user).where(:city => @city, :language => @language).order("city_rank ASC").page(page).per(25)
   end
   
