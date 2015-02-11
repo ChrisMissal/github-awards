@@ -2,6 +2,7 @@ require 'yajl'
 require "csv"
 
 namespace :github_archive_crawler do
+  
   desc "Parse all github archive users"
   task parse_users: :environment do
     event_stream = File.read("ressources/users.json"); 0
@@ -48,9 +49,9 @@ namespace :github_archive_crawler do
   
   
   task crawl_repos: :environment do
-    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
+    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN2"])
     puts "Start crawling repos"
-    start_id = 27941122#Repository.maximum(:github_id)
+    start_id = Repository.maximum(:github_id)
     since = start_id
     
     loop do
@@ -61,7 +62,7 @@ namespace :github_archive_crawler do
           RepositoryWorker.perform_async(repo.to_hash.to_json)
         end
         since = found_repos.last.id
-        break if found_repos.size < 100 || since >= 28709353
+        break if found_repos.size < 100# || since >= 28709353
         #sleep 0.25
       rescue Errno::ETIMEDOUT => e
         puts e

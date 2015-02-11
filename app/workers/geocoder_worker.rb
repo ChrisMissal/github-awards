@@ -12,7 +12,7 @@ end
 class GoogleMap
   def initialize
     @agent = Mechanize.new
-    @agent.set_proxy("127.0.0.1", 5566)
+    #@agent.set_proxy("127.0.0.1", 5566)
   end
   
   def call(location)
