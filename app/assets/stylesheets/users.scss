@@ -13,6 +13,19 @@
     margin: 0 auto;
 }
 
+.intro {
+  height: 800px;
+  background: url(main-bg.png);
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: 1120px 850px;
+}
+
+.intro label {
+  font-size: 32px;
+  text-align: center;
+}
+
 .title {
   text-align: center;
 }
