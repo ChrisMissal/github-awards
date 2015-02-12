@@ -24,5 +24,7 @@ module GithubAwards
     config.active_record.raise_in_transactional_callbacks = true
     
     config.autoload_paths << Rails.root.join('app', 'presenters' )
+    
+    config.assets.precompile += %w(*.svg *.eot *.woff *.ttf)
   end
 end

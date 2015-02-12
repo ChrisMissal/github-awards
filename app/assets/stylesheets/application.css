@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  *= require odometer-theme-default
- */
- 
+ *= require octicons
+*/
  
 a:hover {
   text-decoration: none;

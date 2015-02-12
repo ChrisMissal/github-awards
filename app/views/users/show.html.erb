@@ -1,4 +1,33 @@
 <div class="row">
+  <div class="col-md-3">
+    <%= image_tag @user.gravatar_url, :class => "thumbnail avatar-bg"%>
+    <h2><strong><%= @user.login %></strong></h2>
+    <p class="subtitle"><%= @user.city.capitalize %></p>
+    <p class="subtitle"><%= @user.country.capitalize %></p>
+  </div>
+  <div class="col-md-9">
+    <% @language_ranks.each do |language| %>
+      <% presenter = LanguageRankPresenter.new(language) %>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="subtitle"><%= language.language.capitalize%> ranking</p>
+        </div>
+        <div class="col-md-9 pull-left">
+          <p><%= @user.city.capitalize %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <p><%= @user.country.capitalize %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <p>Worldwilde : <%= presenter.world_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <p>Repos : <%= language.repository_count %> <span class="octicon octicon-repo"></span></p>
+          <p>Stars : <%= language.stars_count %> <span class="octicon octicon-star"></span></p>
+        </div>
+      </div>
+      <hr/>
+    <% end %>
+  </div>
+</div>
+
+
+
+<!-- <div class="row">
   <div class="col-xs-3 col-centered title">
     <h1><%= @user.login %></h1>
     <%= image_tag @user.gravatar_url, :class => "thumbnail avatar-bg"%>
@@ -34,7 +63,7 @@
       </div>  
     </div>
   </div>
-<% end %>
+<% end %> -->
 
 <!-- <div id="graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 

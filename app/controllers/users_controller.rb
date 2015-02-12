@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def index
     puts "flash = #{flash[:alert]}"
     page = params[:page] || 0
-    @city = params[:city].try(:downcase) || "paris"
-    @language = params[:language].try(:downcase) || "ruby"
+    @city = params[:city].try(:downcase) || "san francisco"
+    @language = params[:language].try(:downcase) || "javascript"
     #@languages = Rails.cache.fetch("languages") { JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'languages.json'))) }
     @languages = JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'languages.json')))
     @language_ranks = LanguageRank.includes(:user).where(:city => @city, :language => @language).order("city_rank ASC").page(page).per(25)

@@ -17,6 +17,12 @@
   text-align: center;
 }
 
+.subtitle {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .ranks {
   text-align: center;
   font-weight: bold;
@@ -24,23 +30,24 @@
 }
 
 .avatar {
-  height: 50px;
+  height: 75px;
   margin-bottom: 0px;
 }
 
 .avatar-bg {
   height: 190px;
   margin-right: 20px;
-  margin: 0 auto;
 }
 
 .table>thead>tr>th {
   text-align: center;
+  font-size: 18px;
 }
 
 .table>tbody>tr>td {
   vertical-align: middle;
   text-align: center;
+  font-size: 18px;
 }
 
 .star {

@@ -1,0 +1,1296 @@
+@charset "UTF-8";/* line 5, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.username {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+/* line 11, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+/* line 16, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.title {
+  text-align: center;
+}
+
+/* line 20, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.subtitle {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* line 26, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.ranks {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* line 32, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.avatar {
+  height: 50px;
+  margin-bottom: 0px;
+}
+
+/* line 37, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.avatar-bg {
+  height: 190px;
+  margin-right: 20px;
+}
+
+/* line 42, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.table > thead > tr > th {
+  text-align: center;
+}
+
+/* line 46, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.table > tbody > tr > td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* line 51, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.star {
+  color: yellow;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: orange;
+}
+
+/* line 57, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/app/assets/stylesheets/users.scss */
+.counter {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px !important;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+
+ */
+ /*
+
+*/
+
+ 
+a:hover {
+  text-decoration: none;
+}
+.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative;
+}
+.odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  position: relative;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+  visibility: hidden;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-digit-inner, .odometer.odometer-theme-default .odometer-digit .odometer-digit-inner {
+  text-align: left;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon {
+  display: block;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-ribbon-inner, .odometer.odometer-theme-default .odometer-digit .odometer-ribbon-inner {
+  display: block;
+  -webkit-backface-visibility: hidden;
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-value, .odometer.odometer-theme-default .odometer-digit .odometer-value {
+  display: block;
+  -webkit-transform: translateZ(0);
+}
+.odometer.odometer-auto-theme .odometer-digit .odometer-value.odometer-last-value, .odometer.odometer-theme-default .odometer-digit .odometer-value.odometer-last-value {
+  position: absolute;
+}
+.odometer.odometer-auto-theme.odometer-animating-up .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 2s;
+  -moz-transition: -moz-transform 2s;
+  -ms-transition: -ms-transform 2s;
+  -o-transition: -o-transform 2s;
+  transition: transform 2s;
+}
+.odometer.odometer-auto-theme.odometer-animating-up.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-up.odometer-animating .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.odometer.odometer-auto-theme.odometer-animating-down .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down .odometer-ribbon-inner {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.odometer.odometer-auto-theme.odometer-animating-down.odometer-animating .odometer-ribbon-inner, .odometer.odometer-theme-default.odometer-animating-down.odometer-animating .odometer-ribbon-inner {
+  -webkit-transition: -webkit-transform 2s;
+  -moz-transition: -moz-transform 2s;
+  -ms-transition: -ms-transform 2s;
+  -o-transition: -o-transform 2s;
+  transition: transform 2s;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
+  font-family: "Helvetica Neue", sans-serif;
+  line-height: 1.1em;
+}
+.odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value {
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'octicons';
+  src: url(/fonts/octicons.eot?#iefix) format("embedded-opentype"), url(/fonts/octicons.woff) format("woff"), url(/fonts/octicons.ttf) format("truetype"), url(/fonts/octicons.svg#octicons) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 13, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon, .mega-octicon {
+  font: normal normal normal 16px/1 octicons;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 25, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.mega-octicon {
+  font-size: 32px;
+}
+
+/* line 27, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-alert:before {
+  content: '\f02d';
+}
+
+/*  */
+/* line 28, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-alignment-align:before {
+  content: '\f08a';
+}
+
+/*  */
+/* line 29, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-alignment-aligned-to:before {
+  content: '\f08e';
+}
+
+/*  */
+/* line 30, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-alignment-unalign:before {
+  content: '\f08b';
+}
+
+/*  */
+/* line 31, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-down:before {
+  content: '\f03f';
+}
+
+/*  */
+/* line 32, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-left:before {
+  content: '\f040';
+}
+
+/*  */
+/* line 33, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-right:before {
+  content: '\f03e';
+}
+
+/*  */
+/* line 34, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-small-down:before {
+  content: '\f0a0';
+}
+
+/*  */
+/* line 35, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-small-left:before {
+  content: '\f0a1';
+}
+
+/*  */
+/* line 36, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-small-right:before {
+  content: '\f071';
+}
+
+/*  */
+/* line 37, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-small-up:before {
+  content: '\f09f';
+}
+
+/*  */
+/* line 38, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-arrow-up:before {
+  content: '\f03d';
+}
+
+/*  */
+/* line 39, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-beer:before {
+  content: '\f069';
+}
+
+/*  */
+/* line 40, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-book:before {
+  content: '\f007';
+}
+
+/*  */
+/* line 41, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-bookmark:before {
+  content: '\f07b';
+}
+
+/*  */
+/* line 42, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-briefcase:before {
+  content: '\f0d3';
+}
+
+/*  */
+/* line 43, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-broadcast:before {
+  content: '\f048';
+}
+
+/*  */
+/* line 44, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-browser:before {
+  content: '\f0c5';
+}
+
+/*  */
+/* line 45, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-bug:before {
+  content: '\f091';
+}
+
+/*  */
+/* line 46, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-calendar:before {
+  content: '\f068';
+}
+
+/*  */
+/* line 47, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-check:before {
+  content: '\f03a';
+}
+
+/*  */
+/* line 48, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-checklist:before {
+  content: '\f076';
+}
+
+/*  */
+/* line 49, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-chevron-down:before {
+  content: '\f0a3';
+}
+
+/*  */
+/* line 50, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-chevron-left:before {
+  content: '\f0a4';
+}
+
+/*  */
+/* line 51, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-chevron-right:before {
+  content: '\f078';
+}
+
+/*  */
+/* line 52, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-chevron-up:before {
+  content: '\f0a2';
+}
+
+/*  */
+/* line 53, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-circle-slash:before {
+  content: '\f084';
+}
+
+/*  */
+/* line 54, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-circuit-board:before {
+  content: '\f0d6';
+}
+
+/*  */
+/* line 55, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-clippy:before {
+  content: '\f035';
+}
+
+/*  */
+/* line 56, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-clock:before {
+  content: '\f046';
+}
+
+/*  */
+/* line 57, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-cloud-download:before {
+  content: '\f00b';
+}
+
+/*  */
+/* line 58, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-cloud-upload:before {
+  content: '\f00c';
+}
+
+/*  */
+/* line 59, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-code:before {
+  content: '\f05f';
+}
+
+/*  */
+/* line 60, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-color-mode:before {
+  content: '\f065';
+}
+
+/*  */
+/* line 61, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-comment-add:before,
+.octicon-comment:before {
+  content: '\f02b';
+}
+
+/*  */
+/* line 63, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-comment-discussion:before {
+  content: '\f04f';
+}
+
+/*  */
+/* line 64, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-credit-card:before {
+  content: '\f045';
+}
+
+/*  */
+/* line 65, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-dash:before {
+  content: '\f0ca';
+}
+
+/*  */
+/* line 66, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-dashboard:before {
+  content: '\f07d';
+}
+
+/*  */
+/* line 67, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-database:before {
+  content: '\f096';
+}
+
+/*  */
+/* line 68, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-device-camera:before {
+  content: '\f056';
+}
+
+/*  */
+/* line 69, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-device-camera-video:before {
+  content: '\f057';
+}
+
+/*  */
+/* line 70, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-device-desktop:before {
+  content: '\f27c';
+}
+
+/*  */
+/* line 71, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-device-mobile:before {
+  content: '\f038';
+}
+
+/*  */
+/* line 72, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff:before {
+  content: '\f04d';
+}
+
+/*  */
+/* line 73, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff-added:before {
+  content: '\f06b';
+}
+
+/*  */
+/* line 74, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff-ignored:before {
+  content: '\f099';
+}
+
+/*  */
+/* line 75, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff-modified:before {
+  content: '\f06d';
+}
+
+/*  */
+/* line 76, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff-removed:before {
+  content: '\f06c';
+}
+
+/*  */
+/* line 77, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-diff-renamed:before {
+  content: '\f06e';
+}
+
+/*  */
+/* line 78, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-ellipsis:before {
+  content: '\f09a';
+}
+
+/*  */
+/* line 79, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-eye-unwatch:before,
+.octicon-eye-watch:before,
+.octicon-eye:before {
+  content: '\f04e';
+}
+
+/*  */
+/* line 82, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-binary:before {
+  content: '\f094';
+}
+
+/*  */
+/* line 83, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-code:before {
+  content: '\f010';
+}
+
+/*  */
+/* line 84, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-directory:before {
+  content: '\f016';
+}
+
+/*  */
+/* line 85, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-media:before {
+  content: '\f012';
+}
+
+/*  */
+/* line 86, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-pdf:before {
+  content: '\f014';
+}
+
+/*  */
+/* line 87, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-submodule:before {
+  content: '\f017';
+}
+
+/*  */
+/* line 88, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-symlink-directory:before {
+  content: '\f0b1';
+}
+
+/*  */
+/* line 89, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-symlink-file:before {
+  content: '\f0b0';
+}
+
+/*  */
+/* line 90, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-text:before {
+  content: '\f011';
+}
+
+/*  */
+/* line 91, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-file-zip:before {
+  content: '\f013';
+}
+
+/*  */
+/* line 92, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-flame:before {
+  content: '\f0d2';
+}
+
+/*  */
+/* line 93, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-fold:before {
+  content: '\f0cc';
+}
+
+/*  */
+/* line 94, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gear:before {
+  content: '\f02f';
+}
+
+/*  */
+/* line 95, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gift:before {
+  content: '\f042';
+}
+
+/*  */
+/* line 96, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gist:before {
+  content: '\f00e';
+}
+
+/*  */
+/* line 97, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gist-secret:before {
+  content: '\f08c';
+}
+
+/*  */
+/* line 98, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-git-branch-create:before,
+.octicon-git-branch-delete:before,
+.octicon-git-branch:before {
+  content: '\f020';
+}
+
+/*  */
+/* line 101, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-git-commit:before {
+  content: '\f01f';
+}
+
+/*  */
+/* line 102, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-git-compare:before {
+  content: '\f0ac';
+}
+
+/*  */
+/* line 103, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-git-merge:before {
+  content: '\f023';
+}
+
+/*  */
+/* line 104, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-git-pull-request-abandoned:before,
+.octicon-git-pull-request:before {
+  content: '\f009';
+}
+
+/*  */
+/* line 106, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-globe:before {
+  content: '\f0b6';
+}
+
+/*  */
+/* line 107, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-graph:before {
+  content: '\f043';
+}
+
+/*  */
+/* line 108, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-heart:before {
+  content: '\2665';
+}
+
+/* ♥ */
+/* line 109, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-history:before {
+  content: '\f07e';
+}
+
+/*  */
+/* line 110, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-home:before {
+  content: '\f08d';
+}
+
+/*  */
+/* line 111, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-horizontal-rule:before {
+  content: '\f070';
+}
+
+/*  */
+/* line 112, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-hourglass:before {
+  content: '\f09e';
+}
+
+/*  */
+/* line 113, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-hubot:before {
+  content: '\f09d';
+}
+
+/*  */
+/* line 114, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-inbox:before {
+  content: '\f0cf';
+}
+
+/*  */
+/* line 115, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-info:before {
+  content: '\f059';
+}
+
+/*  */
+/* line 116, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-issue-closed:before {
+  content: '\f028';
+}
+
+/*  */
+/* line 117, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-issue-opened:before {
+  content: '\f026';
+}
+
+/*  */
+/* line 118, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-issue-reopened:before {
+  content: '\f027';
+}
+
+/*  */
+/* line 119, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-jersey:before {
+  content: '\f019';
+}
+
+/*  */
+/* line 120, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-jump-down:before {
+  content: '\f072';
+}
+
+/*  */
+/* line 121, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-jump-left:before {
+  content: '\f0a5';
+}
+
+/*  */
+/* line 122, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-jump-right:before {
+  content: '\f0a6';
+}
+
+/*  */
+/* line 123, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-jump-up:before {
+  content: '\f073';
+}
+
+/*  */
+/* line 124, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-key:before {
+  content: '\f049';
+}
+
+/*  */
+/* line 125, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-keyboard:before {
+  content: '\f00d';
+}
+
+/*  */
+/* line 126, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-law:before {
+  content: '\f0d8';
+}
+
+/*  */
+/* line 127, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-light-bulb:before {
+  content: '\f000';
+}
+
+/*  */
+/* line 128, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-link:before {
+  content: '\f05c';
+}
+
+/*  */
+/* line 129, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-link-external:before {
+  content: '\f07f';
+}
+
+/*  */
+/* line 130, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-list-ordered:before {
+  content: '\f062';
+}
+
+/*  */
+/* line 131, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-list-unordered:before {
+  content: '\f061';
+}
+
+/*  */
+/* line 132, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-location:before {
+  content: '\f060';
+}
+
+/*  */
+/* line 133, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gist-private:before,
+.octicon-mirror-private:before,
+.octicon-git-fork-private:before,
+.octicon-lock:before {
+  content: '\f06a';
+}
+
+/*  */
+/* line 137, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-logo-github:before {
+  content: '\f092';
+}
+
+/*  */
+/* line 138, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mail:before {
+  content: '\f03b';
+}
+
+/*  */
+/* line 139, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mail-read:before {
+  content: '\f03c';
+}
+
+/*  */
+/* line 140, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mail-reply:before {
+  content: '\f051';
+}
+
+/*  */
+/* line 141, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mark-github:before {
+  content: '\f00a';
+}
+
+/*  */
+/* line 142, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-markdown:before {
+  content: '\f0c9';
+}
+
+/*  */
+/* line 143, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-megaphone:before {
+  content: '\f077';
+}
+
+/*  */
+/* line 144, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mention:before {
+  content: '\f0be';
+}
+
+/*  */
+/* line 145, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-microscope:before {
+  content: '\f089';
+}
+
+/*  */
+/* line 146, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-milestone:before {
+  content: '\f075';
+}
+
+/*  */
+/* line 147, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mirror-public:before,
+.octicon-mirror:before {
+  content: '\f024';
+}
+
+/*  */
+/* line 149, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mortar-board:before {
+  content: '\f0d7';
+}
+
+/*  */
+/* line 150, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-move-down:before {
+  content: '\f0a8';
+}
+
+/*  */
+/* line 151, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-move-left:before {
+  content: '\f074';
+}
+
+/*  */
+/* line 152, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-move-right:before {
+  content: '\f0a9';
+}
+
+/*  */
+/* line 153, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-move-up:before {
+  content: '\f0a7';
+}
+
+/*  */
+/* line 154, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-mute:before {
+  content: '\f080';
+}
+
+/*  */
+/* line 155, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-no-newline:before {
+  content: '\f09c';
+}
+
+/*  */
+/* line 156, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-octoface:before {
+  content: '\f008';
+}
+
+/*  */
+/* line 157, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-organization:before {
+  content: '\f037';
+}
+
+/*  */
+/* line 158, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-package:before {
+  content: '\f0c4';
+}
+
+/*  */
+/* line 159, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-paintcan:before {
+  content: '\f0d1';
+}
+
+/*  */
+/* line 160, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-pencil:before {
+  content: '\f058';
+}
+
+/*  */
+/* line 161, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-person-add:before,
+.octicon-person-follow:before,
+.octicon-person:before {
+  content: '\f018';
+}
+
+/*  */
+/* line 164, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-pin:before {
+  content: '\f041';
+}
+
+/*  */
+/* line 165, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-playback-fast-forward:before {
+  content: '\f0bd';
+}
+
+/*  */
+/* line 166, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-playback-pause:before {
+  content: '\f0bb';
+}
+
+/*  */
+/* line 167, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-playback-play:before {
+  content: '\f0bf';
+}
+
+/*  */
+/* line 168, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-playback-rewind:before {
+  content: '\f0bc';
+}
+
+/*  */
+/* line 169, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-plug:before {
+  content: '\f0d4';
+}
+
+/*  */
+/* line 170, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-create:before,
+.octicon-gist-new:before,
+.octicon-file-directory-create:before,
+.octicon-file-add:before,
+.octicon-plus:before {
+  content: '\f05d';
+}
+
+/*  */
+/* line 175, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-podium:before {
+  content: '\f0af';
+}
+
+/*  */
+/* line 176, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-primitive-dot:before {
+  content: '\f052';
+}
+
+/*  */
+/* line 177, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-primitive-square:before {
+  content: '\f053';
+}
+
+/*  */
+/* line 178, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-pulse:before {
+  content: '\f085';
+}
+
+/*  */
+/* line 179, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-puzzle:before {
+  content: '\f0c0';
+}
+
+/*  */
+/* line 180, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-question:before {
+  content: '\f02c';
+}
+
+/*  */
+/* line 181, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-quote:before {
+  content: '\f063';
+}
+
+/*  */
+/* line 182, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-radio-tower:before {
+  content: '\f030';
+}
+
+/*  */
+/* line 183, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-delete:before,
+.octicon-repo:before {
+  content: '\f001';
+}
+
+/*  */
+/* line 185, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-clone:before {
+  content: '\f04c';
+}
+
+/*  */
+/* line 186, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-force-push:before {
+  content: '\f04a';
+}
+
+/*  */
+/* line 187, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-gist-fork:before,
+.octicon-repo-forked:before {
+  content: '\f002';
+}
+
+/*  */
+/* line 189, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-pull:before {
+  content: '\f006';
+}
+
+/*  */
+/* line 190, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-push:before {
+  content: '\f005';
+}
+
+/*  */
+/* line 191, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-rocket:before {
+  content: '\f033';
+}
+
+/*  */
+/* line 192, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-rss:before {
+  content: '\f034';
+}
+
+/*  */
+/* line 193, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-ruby:before {
+  content: '\f047';
+}
+
+/*  */
+/* line 194, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-screen-full:before {
+  content: '\f066';
+}
+
+/*  */
+/* line 195, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-screen-normal:before {
+  content: '\f067';
+}
+
+/*  */
+/* line 196, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-search-save:before,
+.octicon-search:before {
+  content: '\f02e';
+}
+
+/*  */
+/* line 198, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-server:before {
+  content: '\f097';
+}
+
+/*  */
+/* line 199, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-settings:before {
+  content: '\f07c';
+}
+
+/*  */
+/* line 200, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-log-in:before,
+.octicon-sign-in:before {
+  content: '\f036';
+}
+
+/*  */
+/* line 202, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-log-out:before,
+.octicon-sign-out:before {
+  content: '\f032';
+}
+
+/*  */
+/* line 204, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-split:before {
+  content: '\f0c6';
+}
+
+/*  */
+/* line 205, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-squirrel:before {
+  content: '\f0b2';
+}
+
+/*  */
+/* line 206, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-star-add:before,
+.octicon-star-delete:before,
+.octicon-star:before {
+  content: '\f02a';
+}
+
+/*  */
+/* line 209, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-steps:before {
+  content: '\f0c7';
+}
+
+/*  */
+/* line 210, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-stop:before {
+  content: '\f08f';
+}
+
+/*  */
+/* line 211, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-repo-sync:before,
+.octicon-sync:before {
+  content: '\f087';
+}
+
+/*  */
+/* line 213, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-tag-remove:before,
+.octicon-tag-add:before,
+.octicon-tag:before {
+  content: '\f015';
+}
+
+/*  */
+/* line 216, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-telescope:before {
+  content: '\f088';
+}
+
+/*  */
+/* line 217, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-terminal:before {
+  content: '\f0c8';
+}
+
+/*  */
+/* line 218, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-three-bars:before {
+  content: '\f05e';
+}
+
+/*  */
+/* line 219, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-tools:before {
+  content: '\f031';
+}
+
+/*  */
+/* line 220, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-trashcan:before {
+  content: '\f0d0';
+}
+
+/*  */
+/* line 221, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-triangle-down:before {
+  content: '\f05b';
+}
+
+/*  */
+/* line 222, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-triangle-left:before {
+  content: '\f044';
+}
+
+/*  */
+/* line 223, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-triangle-right:before {
+  content: '\f05a';
+}
+
+/*  */
+/* line 224, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-triangle-up:before {
+  content: '\f0aa';
+}
+
+/*  */
+/* line 225, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-unfold:before {
+  content: '\f039';
+}
+
+/*  */
+/* line 226, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-unmute:before {
+  content: '\f0ba';
+}
+
+/*  */
+/* line 227, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-versions:before {
+  content: '\f064';
+}
+
+/*  */
+/* line 228, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-remove-close:before,
+.octicon-x:before {
+  content: '\f081';
+}
+
+/*  */
+/* line 230, /Users/vincentdaubry/Documents/Projets/Archives/github-awards/vendor/assets/stylesheets/sprockets-octicons.scss */
+.octicon-zap:before {
+  content: '\26A1';
+}
+
+/* ⚡ */
