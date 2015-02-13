@@ -15,7 +15,7 @@
 
 .intro {
   height: 800px;
-  background: image-url('main-bg.png');
+  background-image: url(image-path('main-bg.png'));
   background-repeat: no-repeat;
   background-position: center; 
   background-size: 1120px 850px;
