@@ -31,6 +31,8 @@ gem 'fuzzy_match'
 
 gem 'octicons-rails'
 
+gem 'actionpack-action_caching'
+
 gem 'tor-privoxy'
 gem 'mechanize'
 gem 'socksify'
