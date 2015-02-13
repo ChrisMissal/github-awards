@@ -2,10 +2,15 @@
   <div class="col-md-3">
     <%= image_tag @user.gravatar_url, :class => "thumbnail avatar-bg"%>
     <h2><span class="mega-octicon octicon-mark-github"></span> <strong><%= link_to @user.login, "https://github.com/#{@user.login}" %></strong></h2>
-    <p class="subtitle"><%= @user.city.capitalize %></p>
-    <p class="subtitle"><%= @user.country.capitalize %></p>
+    <p class="subtitle"><%= @user.city.try(:capitalize) %></p>
+    <p class="subtitle"><%= @user.country.try(:capitalize) %></p>
   </div>
   <div class="col-md-9">
+    <% if @language_ranks.empty? %>
+      <p><strong>That's embarrassing...</strong></p>
+      <p><strong>It seems you don't have any repository on Github (Or Github couldn't guess the language for any for your repos) </strong></p>
+    <% end %>
+    
     <% @language_ranks.each do |language| %>
       <% presenter = LanguageRankPresenter.new(language) %>
       <div class="row">
@@ -13,8 +18,12 @@
           <p class="subtitle"><%= language.language.capitalize%> ranking</p>
         </div>
         <div class="col-md-9 pull-left">
-          <p><%= @user.city.capitalize %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
-          <p><%= @user.country.capitalize %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <% if @user.city && @user.country%>
+            <p><%= @user.city %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+            <p><%= @user.country %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <% else %>
+            <p> We couldn't find your city or country from your location on github :( </p>
+          <% end %>
           <p>Worldwilde : <%= presenter.world_rank.html_safe %> <i class="fa fa-trophy"></i></p>
           <p>Repos : <%= language.repository_count %> <span class="octicon octicon-repo"></span></p>
           <p>Stars : <%= language.stars_count %> <span class="octicon octicon-star"></span></p>
@@ -24,47 +33,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-<!-- <div class="row">
-  <div class="col-xs-3 col-centered title">
-    <h1><%= @user.login %></h1>
-    <%= image_tag @user.gravatar_url, :class => "thumbnail avatar-bg"%>
-    <p>City : <%= @user.city.capitalize %></p>
-    <p>country : <%= @user.country.capitalize %></p>
-  </div>
-</div>
-<br>
-
-
-<% @language_ranks.each do |language| %>
-  <% presenter = LanguageRankPresenter.new(language) %>
-  <div class="row"  style="height:300px">
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-1 col-centered">
-          <%= image_tag "languages/css.png" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 ranks">
-          <p>Ranking for <%= @user.city %></p>
-          <p><%= presenter.city_rank %></p>
-        </div>
-        <div class="col-xs-4 ranks">
-          <p>Ranking for <%= @user.country %></p>
-          <p><%= presenter.country_rank %> </p>
-        </div>
-        <div class="col-xs-4 ranks">
-          <p>Ranking Worldwilde</p>
-          <p> <%= presenter.world_rank %> </p>
-        </div>
-      </div>  
-    </div>
-  </div>
-<% end %> -->
-
-<!-- <div id="graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-<div id="odometer" class="odometer counter">123</div> -->
