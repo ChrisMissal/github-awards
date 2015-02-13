@@ -13,6 +13,7 @@ pickle-email-*.html
 *.sqlite3-journal
 db/*.dump
 db/*.bck
+db/*.backup
 .DS_Store
 
 /log/*

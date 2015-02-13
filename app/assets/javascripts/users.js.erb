@@ -1,1 +1,9 @@
 var cities = <%= Rails.cache.fetch("cities") { JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'cities.json'))) } %>
+
+$(document).on('page:change', function() {
+  if($('body.users_index').length > 0) {
+    $( "#city" ).autocomplete({
+     source: cities
+    });
+  }
+});

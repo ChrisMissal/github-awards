@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def index
-    puts "flash = #{flash[:alert]}"
     page = params[:page] || 0
     @city = params[:city].try(:downcase) || "san francisco"
     @language = params[:language].try(:downcase) || "javascript"
