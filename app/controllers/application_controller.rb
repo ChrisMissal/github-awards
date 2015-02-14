@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   
   def welcome
   end
+  
+  def not_found
+    raise ActiveRecord::RecordNotFound.new('Not Found')
+  end
 end
