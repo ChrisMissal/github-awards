@@ -33,6 +33,8 @@ gem 'octicons-rails'
 
 gem 'actionpack-action_caching'
 
+gem 'newrelic_rpm'
+
 gem 'tor-privoxy'
 gem 'mechanize'
 gem 'socksify'

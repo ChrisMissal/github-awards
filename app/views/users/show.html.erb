@@ -8,7 +8,7 @@
   <div class="col-md-9">
     <% if @language_ranks.empty? %>
       <p><strong>That's embarrassing...</strong></p>
-      <p><strong>It seems you don't have any repository on Github (Or Github couldn't guess the language for any for your repos) </strong></p>
+      <p><strong>We don't have nay info for your account. Maybe you don't have any repository on Github, or Github couldn't guess the language for any for your repos. </strong></p>
     <% end %>
     
     <% @language_ranks.each do |language| %>
@@ -18,7 +18,7 @@
           <p class="subtitle"><%= language.language.capitalize%> ranking</p>
         </div>
         <div class="col-md-9 pull-left">
-          <% if @user.city && @user.country%>
+          <% if @user.city && @user.country %>
             <p><%= @user.city %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
             <p><%= @user.country %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
           <% else %>
