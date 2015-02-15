@@ -8,7 +8,7 @@
 <div class="row">
   <%= form_tag users_path, :method => 'get' do %>
     <div class="col-lg-2 col-xs-4">
-      <%= select_tag :language, options_for_select(@languages, @language), :class => "form-control" %>
+      <%= select_tag :language, options_for_select(LanguageListPresenter.new.languages, @language), :class => "form-control" %>
     </div>
     <div class="col-lg-4 col-xs-4">
       <%= text_field_tag :city, @city.capitalize, :class => "form-control" %>      

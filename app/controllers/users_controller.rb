@@ -5,12 +5,13 @@ class UsersController < ApplicationController
     page = params[:page] || 0
     @city = params[:city].try(:downcase) || "san francisco"
     @language = params[:language].try(:downcase) || "javascript"
-    @languages = Rails.cache.fetch("languages") { JSON.parse(File.read(Rails.root.join('app', 'assets', 'javascripts', 'languages.json'))) }
     @language_ranks = LanguageRank.includes(:user).where(:city => @city, :language => @language).order("city_rank ASC").page(page).per(25)
   end
   
   def search
     show_user(params[:login])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to users_path, :alert => "User #{params[:login]} not found"
   end
 
   def show
