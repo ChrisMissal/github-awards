@@ -26,19 +26,25 @@ ActiveRecord::Schema.define(version: 20150208192414) do
   add_index "cities", ["city"], name: "index_cities_on_city", using: :btree
   add_index "cities", ["country"], name: "index_cities_on_country", using: :btree
 
-  create_table "language_ranks", id: false, force: :cascade do |t|
-    t.string  "language"
-    t.string  "country"
+  create_table "language_ranks", force: :cascade do |t|
+    t.integer "user_id",                        null: false
+    t.string  "language",                       null: false
+    t.float   "score",                          null: false
+    t.integer "city_rank",          default: 0, null: false
+    t.integer "country_rank",       default: 0, null: false
+    t.integer "world_rank",         default: 0, null: false
     t.string  "city"
-    t.decimal "score"
-    t.integer "rank",             limit: 8
-    t.integer "repository_count", limit: 8
-    t.integer "stars_count",      limit: 8
-    t.integer "user_id"
-    t.float   "top"
+    t.string  "country"
+    t.integer "repository_count",   default: 0, null: false
+    t.integer "stars_count",        default: 0, null: false
+    t.integer "city_user_count",    default: 0, null: false
+    t.integer "country_user_count", default: 0, null: false
+    t.integer "world_user_count",   default: 0, null: false
   end
 
-  add_index "language_ranks", ["language", "rank", "city", "country"], name: "language_ranks_city", using: :btree
+  add_index "language_ranks", ["language", "city_rank", "city"], name: "language_ranks_city", using: :btree
+  add_index "language_ranks", ["language", "country_rank", "city"], name: "language_ranks_country", using: :btree
+  add_index "language_ranks", ["language", "world_rank", "city"], name: "language_ranks_world", using: :btree
   add_index "language_ranks", ["user_id"], name: "language_ranks_user_id", using: :btree
 
   create_table "repositories", force: :cascade do |t|
