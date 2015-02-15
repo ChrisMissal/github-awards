@@ -1,4 +1,3 @@
-require 'yajl'
 require "csv"
 
 namespace :github_archive_crawler do
@@ -6,45 +5,14 @@ namespace :github_archive_crawler do
   desc "Parse all github archive users"
   task parse_users: :environment do
     event_stream = File.read("ressources/users.json"); 0
-    
     puts "Start parsing"
-    
-    time = DateTime.now
-    i = 0
-    Yajl::Parser.parse(event_stream) do |event|
-      UserWorker.perform_async(event)
-      i+=1
-      puts "created #{i} users" if i%1000==0
-    end
-    
-    puts "Done : #{DateTime.now - time}"
+    Tasks::UserImporter.new.parse_stream(event_stream)
   end
   
   task crawl_users: :environment do
-    client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
     puts "Start crawling"
     since = User.last.try(:github_id).try(:to_s) || "0"
-    
-    loop do
-      begin
-        found_users = client.all_users(:since => since)
-        puts "found #{found_users.size} users starting at #{since}"
-        found_users.each do |user|
-          UserWorker.perform_async(user.to_hash)
-        end
-        since = found_users.last.id
-        break if found_users.size < 100
-      rescue Octokit::TooManyRequests => e
-        puts e
-        sleep 10
-      rescue Errno::ETIMEDOUT => e
-        puts e
-        sleep 1
-      rescue Errno::ENETDOWN => e
-        puts e
-        sleep 1
-      end
-    end
+    Tasks::UserImporter.new.crawl_github_users(since)
   end
   
   
@@ -115,23 +83,7 @@ namespace :github_archive_crawler do
     
   #   puts "Done : #{DateTime.now - time}"
   # end
-  
-  # task import_avatars: :environment do
-  #   not_found = File.readlines("tmp/errors.txt").each {|l| l.chomp!}
-  #   client = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-  #   User.where("gravatar_url IS NULL OR gravatar_url = ''").where("login NOT IN (?)", not_found).find_each do |user|
-  #     begin
-  #       github_user = client.user user.login
-  #       user.update_attributes(:gravatar_url => github_user.avatar_url)
-  #       puts "updated #{user.login} with avatar_url : #{github_user.avatar_url}"
-  #     rescue Octokit::NotFound => e
-  #       puts e
-  #       File.open("tmp/errors.txt", "a+") do |f|
-  #         f.puts user.login
-  #       end
-  #     end
-  #   end
-  # end
+
   
   task create_location_db: :environment do
     file = File.read("ressources/worldcitiespop.txt", encoding: "ISO8859-1"); 0

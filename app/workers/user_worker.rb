@@ -5,7 +5,7 @@ class UserWorker
     User.create(:github_id => event["id"],
         :login => event["login"], 
         :name => event["name"], 
-        :mail => event["mail"], 
+        :email => event["email"], 
         :company => event["company"], 
         :blog => event["blog"], 
         :gravatar_url => event["avatar_url"], 
