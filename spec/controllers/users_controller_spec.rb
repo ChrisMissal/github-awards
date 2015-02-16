@@ -54,39 +54,9 @@ describe UsersController do
   end
   
   describe "GET index" do
-    context "has params city and language" do
-      it "keeps params" do
-        get :index, :city => "Paris", :language => "Ruby"
-        assigns(:city).should == "paris"
-        assigns(:language).should == "ruby"
-      end
-    end
-    
-    context "No params for city and language" do
-      it "defaults to SF and Javascript" do
-        get :index
-        assigns(:city).should == "san francisco"
-        assigns(:language).should == "javascript"
-      end
-    end
-    
-    context "has results" do
-      it "returns top users for this city and language ordered by city rank" do
-        lr1 = FactoryGirl.create(:language_rank, :city => "paris", :language => "ruby", :city_rank => 1)
-        lr3 = FactoryGirl.create(:language_rank, :city => "paris", :language => "ruby", :city_rank => 3)
-        lr2 = FactoryGirl.create(:language_rank, :city => "paris", :language => "ruby", :city_rank => 2)
-        
-        get :index, :city => "Paris", :language => "Ruby"
-        
-        assigns(:language_ranks).should == [lr1, lr2, lr3]
-      end
-    end
-    
-    context "has no result" do
-      it "returns empty" do
-        get :index, :city => "Paris", :language => "Ruby"
-        assigns(:language_ranks).should == []
-      end
+    it "returns presenter" do
+      get :index, :city => "Paris", :language => "Ruby", :type => "city"
+      assigns(:user_list_presenter).should_not == nil
     end
   end
 end

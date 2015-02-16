@@ -20,13 +20,13 @@
         </div>
         <div class="col-md-9 pull-left">
           <% if @user.city && @user.country %>
-            <p><%= link_to @user.city.capitalize, users_path(:language => language.language, :city => @user.city) %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
-            <p><%= @user.country.capitalize %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+            <p><%= link_to @user.city.capitalize, users_path(:language => language.language, :city => @user.city, :type => :city) %> : <%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+            <p><%= link_to @user.country.capitalize, users_path(:language => language.language, :country => @user.city, :type => :country) %> : <%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></p>
           <% else %>
             <p> We couldn't find your city or country from your location on github :( </p>
             <p>You can manually search for <%= link_to "top #{language.language.capitalize} github developers in your city", users_path(:language => language.language) %> </p>
           <% end %>
-          <p>Worldwilde : <%= presenter.world_rank.html_safe %> <i class="fa fa-trophy"></i></p>
+          <p><%= link_to "Worldwilde", users_path(:language => language.language, :type => :world) %> : <%= presenter.world_rank.html_safe %> <i class="fa fa-trophy"></i></p>
           <p>Repos : <%= language.repository_count %> <span class="octicon octicon-repo"></span></p>
           <p>Stars : <%= language.stars_count %> <span class="octicon octicon-star"></span></p>
         </div>

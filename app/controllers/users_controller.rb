@@ -2,10 +2,7 @@ class UsersController < ApplicationController
   caches_action :index, :search, :show, :cache_path => Proc.new { |c| c.params }
   
   def index
-    page = params[:page] || 0
-    @city = params[:city].try(:downcase) || "san francisco"
-    @language = params[:language].try(:downcase) || "javascript"
-    @language_ranks = LanguageRank.includes(:user).where(:city => @city, :language => @language).order("city_rank ASC").page(page).per(25)
+    @user_list_presenter = UserListPresenter.new(params)
   end
   
   def search

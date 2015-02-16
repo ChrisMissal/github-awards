@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    mail              "string"
+    email             "string"
     sequence(:login)  {|n| "string #{n}" }
     name              "string"
     company           "string"
