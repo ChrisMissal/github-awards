@@ -63,6 +63,17 @@
   font-size: 18px;
 }
 
+.table.rank>tbody>tr>td {
+  vertical-align: middle;
+  text-align: left;
+  font-size: 15px;
+  border-top: none; 
+}
+
+.table.rank {
+  margin-bottom: 0px !important;
+}
+
 .star {
     color: yellow;
     -webkit-text-stroke-width: 1px;
