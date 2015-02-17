@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/bendiken/tor-ruby.git
-  revision: d3e28f4f0b42db4cc896c1cae1a7059a10321880
-  ref: d3e28f4f0b42db4cc896c1cae1a7059a10321880
-  specs:
-    tor (0.1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,7 +40,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (6.0.0)
-    awesome_print (1.6.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -69,8 +61,6 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
-    domain_name (0.5.23)
-      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -80,20 +70,14 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    fuzzy_match (2.1.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     hike (1.2.3)
     hitimes (1.2.2)
-    http-cookie (1.0.2)
-      domain_name (~> 0.5)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    jbuilder (2.2.6)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     json (1.8.2)
     kaminari (0.16.2)
       actionpack (>= 3.0.0)
@@ -103,15 +87,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mechanize (2.7.3)
-      domain_name (~> 0.5, >= 0.5.1)
-      http-cookie (~> 1.0)
-      mime-types (~> 2.0)
-      net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 2.5, >= 2.5.2)
-      nokogiri (~> 1.4)
-      ntlm-http (~> 0.1, >= 0.1.1)
-      webrobots (>= 0.0.9, < 0.2)
     metaclass (0.0.4)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -121,12 +96,9 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    net-http-digest_auth (1.4)
-    net-http-persistent (2.9.4)
     newrelic_rpm (3.9.9.275)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    ntlm-http (0.1.1)
     octicons-rails (2.1.1)
       railties (>= 3.2, < 5.0)
     octokit (3.7.0)
@@ -163,8 +135,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
-    rdoc (4.2.0)
-      json (~> 1.4)
     redis (3.2.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
@@ -194,9 +164,6 @@ GEM
     sawyer (0.6.0)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
-    sdoc (0.4.1)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     sidekiq (3.3.0)
       celluloid (>= 0.16.0)
       connection_pool (>= 2.0.0)
@@ -204,7 +171,6 @@ GEM
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
     slop (3.6.0)
-    socksify (1.6.0)
     spring (1.2.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -220,8 +186,6 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    tor-privoxy (0.1.1)
-      mechanize
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -229,9 +193,6 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.6)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -241,7 +202,6 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    webrobots (0.1.1)
     yajl-ruby (1.2.1)
 
 PLATFORMS
@@ -249,15 +209,10 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
-  awesome_print
   byebug
-  coffee-rails (~> 4.1.0)
   factory_girl_rails
-  fuzzy_match
   httparty
-  jbuilder (~> 2.0)
   kaminari
-  mechanize
   mocha
   newrelic_rpm
   octicons-rails
@@ -268,12 +223,8 @@ DEPENDENCIES
   redis
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
-  sdoc (~> 0.4.0)
   sidekiq
-  socksify
   spring
-  tor!
-  tor-privoxy
   turbolinks
   uglifier (>= 1.3.0)
   unicorn

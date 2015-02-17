@@ -6,7 +6,7 @@ class Tasks::UserImporter
   end
   
   def crawl_github_users(since)
-    client = Tasks::GithubClient.new(ENV["GITHUB_TOKEN"])
+    client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |user| 
       UserWorker.perform_async(user.to_hash)
     end

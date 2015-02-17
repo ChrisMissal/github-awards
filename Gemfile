@@ -1,72 +1,27 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'yajl-ruby'
-
 gem 'pg', '0.18.1'
-
 gem 'sidekiq'
-
 gem 'octokit'
-
-gem 'fuzzy_match'
-
 gem 'octicons-rails'
-
 gem 'actionpack-action_caching'
-
 gem 'newrelic_rpm'
-
-gem 'tor-privoxy'
-gem 'mechanize'
-gem 'socksify'
 gem 'redis'
 gem 'unicorn'
 gem 'httparty'
 gem 'kaminari'
-gem 'awesome_print'
-gem 'tor', :git => 'https://github.com/bendiken/tor-ruby.git', :ref => 'd3e28f4f0b42db4cc896c1cae1a7059a10321880'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  
+  gem 'byebug'  
   gem 'quiet_assets'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
   gem 'rspec-rails', '~> 3.0'
-  
   gem 'factory_girl_rails'
-  
   gem 'mocha'
 end

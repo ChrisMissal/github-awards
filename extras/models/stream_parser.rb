@@ -9,7 +9,7 @@ class Models::StreamParser
     i = 0
     Yajl::Parser.parse(@stream) do |event|
       yield event
-      puts "Parsed #{i} lines" if i%1000==0
+      Rails.logger.info "Parsed #{i} lines" if i%1000==0
       i+=1
     end
   end
