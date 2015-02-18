@@ -2,7 +2,7 @@
 
 Github-awards gives your rankings on Github by language and by location (city, country and worldwide) based on the number of stars of your repos.
 
-In order to calculate you ranking on Github we need to :
+In order to calculate your ranking on Github we need to :
 - Get all github users with their location
 - Geocode their location
 - Get all github repositories with language and number of stars 
@@ -11,9 +11,9 @@ With this informations we are able to compute your ranking for a given language 
 
 ## Step 1 : Get all users and repositories
 
-There are over 10 Millions users and over 15 Millions repositories, you cannot just use the get single element API from github for each user and repos.
+There are over 10 Millions users and over 15 Millions repositories on Github, you cannot just call the get single element API from for each user and repos.
 
-However the github list api returns 100 results at a time with basic informations :
+However the Github list API returns 100 results at a time with basic informations :
 - [get-all-users](https://developer.github.com/v3/users/#get-all-users)
 - [list-all-public-repositories](https://developer.github.com/v3/repos/#list-all-public-repositories)
 
@@ -32,7 +32,7 @@ Now we need to get detailed informations such as location, language, number of s
 
 > GitHub Archive is a project to record the public GitHub timeline, archive it, and make it easily accessible for further analysis.
 
-The Github Archive dataset is public, Google Big Query can be used to find details about users and repositories. Unfortunatly the Github Archives events starts from 2011, so we won't get ranking informations for users and repos that have been inactive since 2011.
+The Github Archive dataset is public, with Google Big Query we can filter the dataset to get only the latest event for each repo and users. Unfortunatly the Github Archives events starts from 2011, so we won't get ranking informations for users and repos that have been inactive since 2011.
 
 - Request for repositories :
 

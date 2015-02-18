@@ -16,12 +16,24 @@ gem 'puma'
 gem 'httparty'
 gem 'kaminari'
 
-group :development, :test do
-  gem 'byebug'  
+group :development do
   gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  
+  #required for google storage
+  gem 'google-api-client'
+  gem 'highline'
+  gem 'thin'
+  gem 'launchy'
+end
+
+group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
-  gem 'mocha'
+  gem 'mocha'  
+end
+
+group :development, :test do
+  gem 'byebug'
 end
