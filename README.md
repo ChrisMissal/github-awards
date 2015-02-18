@@ -66,7 +66,7 @@ In order to speed up queries based on user ranks i created a table with all rank
 
 The query to create the language_rankings table can be found here :
 
-``` sql/rank.sql ```
+[rank.sql](https://github.com/vdaubry/github-awards-api/blob/master/sql/rank.sql)
 
 
 ## Step 5 : VOILA ! Look for your ranking and have fun :)
