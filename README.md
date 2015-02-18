@@ -32,7 +32,7 @@ Now we need to get detailed informations such as location, language, number of s
 
 > GitHub Archive is a project to record the public GitHub timeline, archive it, and make it easily accessible for further analysis.
 
-The Github Archive dataset is public, Google Big Query can be used to find details about users and repositories.
+The Github Archive dataset is public, Google Big Query can be used to find details about users and repositories. Unfortunatly the Github Archives events starts from 2011, so we won't get ranking informations for users and repos that have been inactive since 2011.
 
 - Request for repositories :
 
@@ -55,7 +55,7 @@ We now have users location, and repositories language and number of stars. In or
 
 ## Step 3 : Geocoding user locations
 
-Location on github profile is a plein text field, there are about 1 million location to geocode. A solution is to use a combination of :
+Location on Github is a plein text field, there are about 1 million location to geocode. A solution is to use a combination of :
 - [Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/)
 - [Open Street Map API](http://wiki.openstreetmap.org/wiki/Nominatim)
 
