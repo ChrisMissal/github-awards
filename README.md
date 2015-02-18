@@ -31,18 +31,19 @@ The Github Archive dataset is public, i used Google Big Query to get details abo
 
 - Request for repositories :
 
-users.sql
+[users.sql](https://github.com/vdaubry/github-awards-api/blob/master/sql/GoogleBigQuery/users.sql)
 
 - Request for users :
 
-repos.sql
+[repos.sql](https://github.com/vdaubry/github-awards-api/blob/master/sql/GoogleBigQuery/repos.sql)
 
 We can then download the results as JSON, parse the result, and fill missing informations about users and repos
 
 Rake task are :
 
-rake redis:parse_users
-rake redis:parse_repos
+``` rake redis:parse_users ```
+
+``` rake redis:parse_repos ```
 
 We now have users location, and repositories language. In order to get country and world rank we need to geocode user locations
 
@@ -55,7 +56,7 @@ Location on github profile is a plein text field, there are about 1 million loca
 
 Rake task is :
 
-rake user:geocode_locations
+``` rake user:geocode_locations ```
 
 We now have all informations we need to compute ranking.
 
