@@ -72,5 +72,6 @@ The query to create the language_rankings table can be found here :
 
 
 Next steps :
-Automating data update
-Improve UI
+
+- Automating data update
+- Improve UI

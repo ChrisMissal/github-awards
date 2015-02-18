@@ -7,9 +7,11 @@
   </div>
   <div class="col-md-9">
     <% if @language_ranks.empty? %>
-      <p><strong>That's embarrassing...</strong></p>
-      <p><strong>We don't have nay info for your account. Maybe you don't have any repository on Github, or Github couldn't guess the language for any for your repos. </strong></p>
-      <p>You can manually search for <%= link_to "top github developers in your city", users_path %> </p>
+      <div class="no-info">
+        <p><strong>That's embarrassing...</strong></p>
+        <p><strong>We don't have any info for your account. Maybe you don't have any repository on Github, or Github couldn't guess the language for any for your repos. </strong></p>
+        <p>You can manually search for <%= link_to "top github developers in your city", users_path %> </p>
+      </div>
     <% end %>
     
     <% @language_ranks.each do |language| %>
@@ -56,6 +58,5 @@
       </div>
       <hr/>
     <% end %>
-    <p class="send_tweet"><strong>Think this project is fun ? Support it by sending a </strong> <a href="http://twitter.com/share?text=What's your ranking on Github ? Come check it out on Github-awards !&url=http://www.github-awards.com/&hashtags=github" title="Share github-awards on Twitter" target="_blank">tweet <i class="fa fa-twitter"></i></a></p>
   </div>
 </div>
