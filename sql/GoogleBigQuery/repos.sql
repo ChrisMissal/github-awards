@@ -1,4 +1,4 @@
-SELECT *
+SELECT a.repository_url, a.repository_watchers, a.repository_language, a.repository_pushed_at
 FROM [githubarchive:github.timeline] a
 JOIN EACH
   (

@@ -1,16 +1,18 @@
-class UserWorker
+class UserFillWorker
   include Sidekiq::Worker
 
-  def perform(event)
-    event = JSON.parse(event)
-    User.create(:github_id => event["id"],
-        :login => event["login"], 
-        :name => event["name"], 
-        :email => event["email"], 
-        :company => event["company"], 
-        :blog => event["blog"], 
-        :gravatar_url => event["avatar_url"], 
-        :location => event["location"],
-        :organization => event["type"]=="Organization")
+  def perform(user_id, user_infos)
+    user = User.find(user_id)
+    if user_infos != ""
+      infos = JSON.parse(user_infos)
+      user.update_columns(:mail => infos["email"], 
+        :name => infos["name"], 
+        :company => infos["company"],
+        :blog => infos["blog"],
+        :location => infos["location"],
+        :processed => true)
+    else
+      user.update_columns(:processed => true)
+    end
   end
 end

@@ -9,13 +9,8 @@ class Tasks::UserImporter
     client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |user| 
       User.create(:github_id => user["id"],
-        :login => user["login"], 
-        :name => user["name"], 
-        :email => user["email"], 
-        :company => user["company"], 
-        :blog => user["blog"], 
-        :gravatar_url => user["avatar_url"], 
-        :location => user["location"],
+        :login => user["login"],
+        :gravatar_url => user["avatar_url"],
         :organization => user["type"]=="Organization")
     end
     
