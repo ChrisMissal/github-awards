@@ -11,7 +11,7 @@ With this informations we are able to compute your ranking for a given language 
 
 ## Step 1 : Get all users and repositories
 
-There are over 10 Millions users and over 15 Millions repositories on Github, you cannot just call the get single element API from for each user and repos.
+There are over 10 Millions users and over 15 Millions repositories on Github, we cannot just call the get single element API from for each user and repos.
 
 However the Github list API returns 100 results at a time with basic informations :
 - [get-all-users](https://developer.github.com/v3/users/#get-all-users)
@@ -21,9 +21,9 @@ With this you can get up to 500k user / repo per hour : this is enough to get th
 
 Rake task are :
 
-``` rake user:crawl_users ```
+``` rake user:crawl ```
 
-``` rake repo:crawl_repos ```
+``` rake repo:crawl ```
 
 Now we need to get detailed informations such as location, language, number of stars.
 
@@ -67,7 +67,13 @@ We now have all informations we need to compute ranking.
 
 ## Step 4 : Compute rankings by language and by location (city/country/world)
 
-In order to speed up queries based on user ranks, you can create a table with all rankings informations. Once we have all rankings informations on a table we can properly index it and query it in our web application with acceptable response time.
+To get rankings we first calculate a score for each user in each language using this formula :
+
+``` sum(stars) + (1.0 - 1.0/count(repositories)) ```
+
+Then we use Postgres [ROW_NUMBER()](http://www.postgresql.org/docs/9.4/static/functions-window.html) function to get ranks compared to other developers with repositories in the same languages, in the same location (by city, by country or worldwide).
+
+In order to speed up queries based on user ranks, we create a table with all rankings informations. Once we have all rankings informations on a table we can properly index it and query it in our web application with acceptable response time.
 
 The query to create the language_rankings table can be found here :
 
@@ -81,3 +87,12 @@ Next steps :
 
 - Automating data update
 - Improve UI
+
+
+## Contributing :
+
+* Fork it ( https://github.com/vdaubry/github-awards/fork )
+* Create your feature branch (git checkout -b my-new-feature)
+* Commit your changes (git commit -am 'Add some feature')
+* Push to the branch (git push origin my-new-feature)
+* Create a new Pull Request

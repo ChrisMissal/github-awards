@@ -8,10 +8,11 @@ class Tasks::UserImporter
   def crawl_github_users(since)
     client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |user| 
-      UserWorker.perform_async(user.to_hash)
+      UserWorker.perform_async(user.to_hash.to_json)
     end
     
-    client.on_too_many_requests = lambda do |user|
+    client.on_too_many_requests = lambda do |error|
+      Rails.logger.error error
       sleep 10
       return nil
     end

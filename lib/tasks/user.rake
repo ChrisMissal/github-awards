@@ -1,7 +1,7 @@
 namespace :user do
   desc "Crawl github API for users"
-  task crawl_users: :environment do
-    puts "Start crawling"
+  task crawl: :environment do
+    Rails.logger.info "Start crawling"
     since = User.last.try(:github_id).try(:to_s) || "0"
     Tasks::UserImporter.new.crawl_github_users(since)
   end

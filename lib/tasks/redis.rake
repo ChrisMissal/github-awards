@@ -1,5 +1,12 @@
 namespace :redis do
   
+  desc "Clean sidekiq jobs"
+  task clean_sidekiq: :environment do
+    require "sidekiq/api"
+    Sidekiq::Queue.new.clear
+    Sidekiq::RetrySet.new.clear
+  end
+  
   desc "Get latest infos for each repos"
   task parse_repos: :environment do
     Tasks::RepositoryImporter.new.parse_streams

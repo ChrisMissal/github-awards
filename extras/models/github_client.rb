@@ -1,8 +1,6 @@
 class Models::GithubClient
   attr_accessor :max_list_size
-  attr_accessor :on_found_object
-  attr_accessor :on_error
-  attr_accessor :on_too_many_requests
+  attr_accessor :on_found_object, :on_error, :on_too_many_requests
   
   def initialize(token)
     @client = Octokit::Client.new(:access_token => token)

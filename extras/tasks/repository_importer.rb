@@ -2,10 +2,11 @@ class Tasks::RepositoryImporter
   def crawl_github_repos(since)
     client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |repo| 
-      RepositoryWorker.perform_async(repo.to_hash)
+      RepositoryWorker.perform_async(repo.to_hash.to_json)
     end
     
-    client.on_too_many_requests = lambda do |user|
+    client.on_too_many_requests = lambda do |error|
+      Rails.logger.error error
       sleep 10
       return nil
     end

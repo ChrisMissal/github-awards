@@ -10,11 +10,11 @@ gem 'sidekiq'
 gem 'octokit'
 gem 'octicons-rails'
 gem 'actionpack-action_caching'
-gem 'newrelic_rpm'
 gem 'redis'
 gem 'puma'
 gem 'httparty'
 gem 'kaminari'
+
 
 group :development do
   gem 'quiet_assets'
@@ -36,4 +36,8 @@ end
 
 group :development, :test do
   gem 'byebug'
+end
+
+group :production do
+  gem 'newrelic_rpm'
 end

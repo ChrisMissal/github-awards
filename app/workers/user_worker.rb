@@ -2,6 +2,7 @@ class UserWorker
   include Sidekiq::Worker
 
   def perform(event)
+    event = JSON.parse(event)
     User.create(:github_id => event["id"],
         :login => event["login"], 
         :name => event["name"], 
