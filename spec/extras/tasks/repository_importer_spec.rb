@@ -24,13 +24,17 @@ describe Tasks::UserImporter do
       stub_response = JSON.parse(File.read("spec/fixtures/github_api_repo.json"))
       Octokit::Client.any_instance.stubs(:all_repositories).returns(stub_response)
       Tasks::RepositoryImporter.new.crawl_github_repos("0")
-      Repository.count.should == 1
+      repo = Repository.first
+      repo.github_id.should == 17654
+      repo.name.should == "grit"
+      repo.user_id.should == "mojombo"
+      repo.forked.should == true
     end
     
     it "iterates while max repos is reached" do
       Octokit::Client.any_instance.stubs(:all_repositories)
-      .returns([{"owner" => "foo1", "name" => "bar1", "id" => 0}, {"owner" => "foo2", "name" => "bar2", "id" => 1}])
-      .then.returns([{"owner" => "foo3", "name" => "bar3", "id" => 2}])
+      .returns([{"owner" => {"login" => "foo1"}, "name" => "bar1", "id" => 0}, {"owner" => {"login" => "foo2"}, "name" => "bar2", "id" => 1}])
+      .then.returns([{"owner" => {"login" => "foo3"}, "name" => "bar3", "id" => 2}])
       Models::GithubClient.any_instance.stubs(:max_list_size).returns(2)
       Tasks::RepositoryImporter.new.crawl_github_repos("0")
       Repository.count.should == 3
@@ -39,7 +43,7 @@ describe Tasks::UserImporter do
     context "network error" do
       it "continues crawling" do
         Octokit::Client.any_instance.stubs(:all_repositories).raises(Errno::ETIMEDOUT)
-        .then.returns([{:owner => "foo3", "name" => "bar3", :id => 2}])
+        .then.returns([{"owner" => {"login" => "foo3"}, "name" => "bar3", :id => 2}])
         Tasks::RepositoryImporter.new.crawl_github_repos("0")
         Repository.count.should == 1
       end

@@ -24,7 +24,7 @@
     "private": false,
     "html_url": "https://github.com/mojombo/grit",
     "description": "**Grit is no longer maintained. Check out libgit2/rugged.** Grit gives you object oriented read/write access to Git repositories via Ruby.",
-    "fork": false,
+    "fork": true,
     "url": "https://api.github.com/repos/mojombo/grit",
     "forks_url": "https://api.github.com/repos/mojombo/grit/forks",
     "keys_url": "https://api.github.com/repos/mojombo/grit/keys{/key_id}",

@@ -6,6 +6,6 @@ class RepositoryWorker
     Repository.create(:github_id => event["id"],
         :name => event["name"], 
         :user_id => event["owner"],
-        :forked => event["fork"]
+        :forked => event["fork"] || false)
   end
 end
