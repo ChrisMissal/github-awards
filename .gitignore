@@ -15,7 +15,7 @@ db/*.dump
 db/*.bck
 db/*.backup
 .DS_Store
-google_client_secrets.json
+client_secrets.json
 
 /log/*
 !/log/.keep

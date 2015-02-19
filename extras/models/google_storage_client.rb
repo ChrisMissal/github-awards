@@ -10,7 +10,7 @@ class GoogleStorageClient
     # Creating a new API client and loading the Google Cloud Storage API.
     @bucket = bucket
     @client = Google::APIClient.new(:application_name => "githubawards", :application_version => "0.1")
-    @storage = client.discovered_api('storage', API_VERSION)
+    @storage = @client.discovered_api('storage', API_VERSION)
 
     # OAuth authentication.
     auth_util = CommandLineOAuthHelper.new(
@@ -19,12 +19,12 @@ class GoogleStorageClient
   end
   
   def download(filename)
-    result = client.execute(
-      :api_method => storage.buckets.get,
+    result = @client.execute(
+      :api_method => @storage.buckets.get,
       :parameters => { 'bucket' => @bucket, 'object' => filename }
     )
 
-    url = URI("http://storage.googleapis.com/#{DEFAULT_BUCKET}/#{filename}")
+    url = URI("http://storage.googleapis.com/#{@bucket}/#{filename}")
     access_token = "Bearer "+result.request.authorization.access_token
 
     Net::HTTP.start(url.host, url.port) do |http|
@@ -32,7 +32,7 @@ class GoogleStorageClient
       request.add_field("Authorization", access_token)
 
       http.request request do |response|
-        open Tempfile.new(filename), 'w' do |io|
+        open filename, 'w' do |io|
           response.read_body do |chunk|
             io.write chunk
           end

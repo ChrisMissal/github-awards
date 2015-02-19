@@ -8,8 +8,7 @@ require 'google/api_client/client_secrets'
 class CommandLineOAuthHelper
 
   def initialize(scope)
-    secret_file_path = File.expand_path(File.dirname(__FILE__))+"/google_client_secrets.json"
-    credentials = Google::APIClient::ClientSecrets.load(secret_file_path)
+    credentials = Google::APIClient::ClientSecrets.load
     @authorization = Signet::OAuth2::Client.new(
       :authorization_uri => credentials.authorization_uri,
       :token_credential_uri => credentials.token_credential_uri,
