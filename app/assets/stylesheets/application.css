@@ -18,3 +18,100 @@
 a:hover {
   text-decoration: none;
 }
+
+/*** ABOUT ***/
+
+.faq_header {
+  font-size: 27px;
+  margin: 20px;
+}
+
+
+/*** User index ***/
+
+.avatar {
+  height: 75px;
+  margin-bottom: 0px;
+}
+
+
+.table>thead>tr>th {
+  text-align: center;
+  font-size: 18px;
+}
+
+.table>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+}
+
+.star {
+    color: yellow;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+}
+
+
+/*** User show ***/
+
+.send_tweet {
+  margin-left: 80px;
+}
+
+.avatar-bg {
+  height: 190px;
+  margin-right: 20px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.table.rank>tbody>tr>td {
+  vertical-align: middle;
+  text-align: left;
+  font-size: 15px;
+  border-top: none; 
+}
+
+.table.rank {
+  margin-bottom: 0px !important;
+}
+
+
+
+/*** Welcome ***/
+
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.username {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.intro {
+  height: 800px;
+  background-image: url(image-path('main-bg.png'));
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: 1120px 850px;
+}
+
+.intro label {
+  font-size: 32px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 18px;
+  text-align: center;
+}
+

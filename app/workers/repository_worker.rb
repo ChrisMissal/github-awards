@@ -1,16 +1,17 @@
 class RepositoryFillWorker
   include Sidekiq::Worker
 
-  def perform(repo_id, repo_infos)
-    repo = Repository.find(repo_id)
-    if repo_infos != ""
-      infos = JSON.parse(repo_infos)
-      repo.update_columns(:stars => infos["a_repository_watchers"] || 0, 
-        :language => infos["a_repository_language"], 
-        :forked => infos["a_repository_fork"],
-        :processed => true)
-    else
-      repo.update_columns(:processed => true)
+  def perform(filepath)
+    event_stream = File.read(filepath); 0
+    Models::StreamParser.new(event_stream).parse do |event|
+      repo = Repository.where(:user_id => event["a_repository_owner"], :name => event["a_repository_name"]).first
+      if repo
+        repo.forked ||= event["a_repository_fork"]
+        repo.stars ||= event["a_repository_watchers"]
+        repo.language ||= event["a_repository_language"]
+        repo.processed = true
+        repo.save!
+      end
     end
   end
 end
