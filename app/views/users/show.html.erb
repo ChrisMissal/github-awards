@@ -29,7 +29,7 @@
                   <td><%= presenter.city_rank.html_safe %> <i class="fa fa-trophy"></i></td>
                 </tr>
                 <tr>
-                  <td class="col-md-3"><%= link_to @user.country.capitalize, users_path(:language => language.language, :country => @user.city, :type => :country) %> :</td>
+                  <td class="col-md-3"><%= link_to @user.country.capitalize, users_path(:language => language.language, :country => @user.country, :type => :country) %> :</td>
                   <td><%= presenter.country_rank.html_safe %> <i class="fa fa-trophy"></i></td>
                 </tr>
               </tbody>
