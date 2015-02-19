@@ -2,9 +2,10 @@ class Tasks::RepositoryImporter
   def crawl_github_repos(since)
     client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |repo| 
-      repo = repo.to_hash.with_indifferent_access
-      repo[:owner] = repo[:owner][:login]
-      RepositoryWorker.perform_async(repo.to_json)
+      Repository.create(:github_id => repo["id"],
+        :name => repo["name"], 
+        :user_id => repo["owner"]["login"],
+        :forked => repo["fork"] || false)
     end
     
     client.on_too_many_requests = lambda do |error|

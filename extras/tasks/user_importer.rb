@@ -8,7 +8,15 @@ class Tasks::UserImporter
   def crawl_github_users(since)
     client = Models::GithubClient.new(ENV["GITHUB_TOKEN"])
     client.on_found_object = lambda do |user| 
-      UserWorker.perform_async(user.to_hash.to_json)
+      User.create(:github_id => user["id"],
+        :login => user["login"], 
+        :name => user["name"], 
+        :email => user["email"], 
+        :company => user["company"], 
+        :blog => user["blog"], 
+        :gravatar_url => user["avatar_url"], 
+        :location => user["location"],
+        :organization => user["type"]=="Organization")
     end
     
     client.on_too_many_requests = lambda do |error|
